@@ -23,6 +23,8 @@
             "@events/*": ["src/events/*"],
             "@state/*": ["src/state/*"],
             "@ui/*": ["src/ui/*"],
+            "@config/*": ["src/config/*"],
+            "@utils/*": ["src/utils/*"]
         },
     },
     "include": [

@@ -44,6 +44,8 @@ module.exports = {
             "@events": path.resolve(__dirname, "src/events"),
             "@state": path.resolve(__dirname, "src/state"),
             "@ui": path.resolve(__dirname, "src/ui"),
+            "@config": path.resolve(__dirname, "src/config"),
+            "@utils": path.resolve(__dirname, "src/utils"),
         }
     },
     devtool: 'inline-source-map',
