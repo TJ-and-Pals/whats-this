@@ -1,0 +1,1 @@
+# Lightweight static media goes here

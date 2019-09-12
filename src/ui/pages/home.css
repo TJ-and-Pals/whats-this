@@ -1,0 +1,15 @@
+
+.home-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.home-page-hello {
+    display: relative;
+    margin-top: -33vh;
+    font-size: xx-large;
+    text-align: center;
+}
