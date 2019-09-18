@@ -7,7 +7,7 @@ const CDN_HOST = process.env['NODE_ENV'] === "production"
     : "http://localhost:4102";
 
 const CDN_ROOT = CDN_HOST + "/app/whats-this";
-const CDN_COMMON = CDN_HOST + "/common";
+const CDN_COMMON = CDN_HOST + "/app/common";
 
 module.exports = function (rawString) {
   return rawString 
