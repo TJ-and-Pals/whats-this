@@ -8,8 +8,8 @@ if(!process.env.DEVELOPER || process.env.DEVELOPER === "") {
 const paths = {
     david: (osPlatform) => {
         switch(osPlatform) {
-            case "linux": return `/dropbox/container/Dropbox (Personal)/TJANDPALS/SA Test Pilot/Apps/Common/cdn/app`
-            default: return `D:\\Dropbox (Personal)\\TJANDPALS\\SA Test Pilot\\Apps\\Common\\cdn\\app`
+            case "linux": return `/dropbox/container/Dropbox (Personal)/TJANDPALS/SA Test Pilot/Apps/Common/cdn`
+            default: return `D:\\Dropbox (Personal)\\TJANDPALS\\SA Test Pilot\\Apps\\Common\\cdn`
         }
     },
 }

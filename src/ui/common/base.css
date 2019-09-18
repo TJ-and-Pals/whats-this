@@ -1,0 +1,35 @@
+.base {
+}
+
+.base > header {
+    width: calc(1024px * var(--scale));
+    height: calc(190px * var(--scale));
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-image: url("%CDN_COMMON%/top-curve.svg");
+}
+
+.base > header > .logo {
+    position: absolute;
+    top: calc(13px * var(--scale));
+    left: calc(13px * var(--scale));
+    width: calc(197.6px * var(--scale));
+    height: calc(87.28px * var(--scale));
+}
+
+.base > header > .text {
+    font-family: "ITC Kabel Std";
+    font-weight: normal;
+    font-size: calc(66px * var(--scale));
+    letter-spacing: 0.02em;
+    text-align: left;
+    color: #ffff01;
+    text-shadow: 7px 4px 15px rgba(0, 0, 0, 0.16);
+
+    position: absolute;
+    left: calc(400px * var(--scale));
+    top: calc(21px * var(--scale));
+}

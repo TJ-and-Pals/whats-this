@@ -3,15 +3,14 @@
 //2. build-utils/localcdn.js
 
 const CDN_HOST = process.env['NODE_ENV'] === "production"
-    ? "https://storage.googleapis.com/tjandpals-cdn-eu/app/whats-this"
+    ? "https://storage.googleapis.com/tjandpals-cdn-eu"
     : "http://localhost:4102";
 
-const CDN_ASSETS = CDN_HOST + "/assets";
-const CDN_UI = CDN_ASSETS + "/ui";
+const CDN_ROOT = CDN_HOST + "/app/whats-this";
+const CDN_COMMON = CDN_HOST + "/common";
 
 module.exports = function (rawString) {
   return rawString 
-        .replace(/%CDN_ASSETS%/g, CDN_ASSETS)
-        .replace(/%CDN_HOST%/g, CDN_HOST)
-        .replace(/%CDN_UI%/g, CDN_UI);
+        .replace(/%CDN_ROOT%/g, CDN_ROOT)
+        .replace(/%CDN_COMMON%/g, CDN_COMMON)
 }

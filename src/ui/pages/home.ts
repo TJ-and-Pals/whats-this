@@ -3,11 +3,10 @@ import {CdnPath} from "@utils/path";
 
 import "./home.css";
 
-export const home = () => html`
-    <div class="home-page-container">
-        <div class="home-page-hello">
-            Hello World!
-            <img src=${CdnPath.root("house.jpg")} />
-        </div>
+export const home = () => {
+    return html`
+    <div class="home">
+        <img class="home-tj" src=${CdnPath.root("tj-graduate.svg")} />
     </div>
 `
+}

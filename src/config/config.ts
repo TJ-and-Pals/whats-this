@@ -6,4 +6,7 @@ export const CloudStorageUrlBase = `https://storage.googleapis.com/`;
 
 export const CdnUrlBase = !isProduction  
     ? `http://localhost:4102/`
-    : CloudStorageUrlBase + "tjandpals-cdn-eu/app/";
+    : CloudStorageUrlBase + "tjandpals-cdn-eu/";
+
+export const STAGE_WIDTH = 1024;
+export const STAGE_HEIGHT = 768;

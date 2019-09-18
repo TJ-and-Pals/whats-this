@@ -1,15 +1,11 @@
 
-.home-page-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
+.home {
+    position: absolute;
 }
-
-.home-page-hello {
-    display: relative;
-    margin-top: -33vh;
-    font-size: xx-large;
-    text-align: center;
+.home-tj {
+    width: calc(324.76px * var(--scale));
+    height: calc(566.62px * var(--scale));
+    position: absolute;
+    left: calc(60px * var(--scale));
+    top: calc(104px * var(--scale));
 }
