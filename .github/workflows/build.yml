@@ -19,21 +19,6 @@ jobs:
         run: npm test
       - name: bundle into dist
         run: npm run bundle
-      - name: preserve artifacts
-        uses: actions/upload-artifact@v1
-        with:
-          name: dist
-          path: dist
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: bundle
-    steps:
-      - name: restore artifacts
-        uses: actions/download-artifact@v1
-        with:
-          name: dist
-          path: dist
       - name: deploy to firebase
         uses: w9jds/firebase-action@v1.0.1
         with:
