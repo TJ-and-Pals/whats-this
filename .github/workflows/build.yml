@@ -30,13 +30,21 @@ jobs:
         with:
           name: dist 
           path: dist 
-      - name: Notify slack
+      - name: Notify slack of all status
         uses: pullreminders/slack-action@master
         with:
-          args: '{\"channel\":\"CNC07GN01\",\"text\":\"build status: ${{job.status}} \"}'
+          args: '{\"channel\":\"CNC07GN01\",\"text\":\"build status: ${{job.status}}\"}'
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         if: always()
+      - name: Notify slack of success and deploy will happen
+        uses: pullreminders/slack-action@master
+        with:
+          args: '{\"channel\":\"CNC07GN01\",\"text\":\"Preparing for deploy...\"}'
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        if: success()
+
   deploy:
     runs-on: ubuntu-latest
     needs: bundle
