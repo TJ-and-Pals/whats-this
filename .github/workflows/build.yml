@@ -24,13 +24,12 @@ jobs:
         with:
           name: dist 
           path: dist 
-      - name: post to slack
-        uses: 8398a7/action-slack@v2
+      - name: Notify slack
+        uses: pullreminders/slack-action@master
         with:
-          status: ${{ job.status }}
+          args: '{\"channel\":\"CNC07GN01\",\"text\":\"job status: ${job.status} \"}'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         if: always()
   deploy:
     runs-on: ubuntu-latest
@@ -50,11 +49,3 @@ jobs:
         env:
           PROJECT_ID: tjandpals-whats-this
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-      - name: post to slack
-        uses: 8398a7/action-slack@v2
-        with:
-          status: ${{ job.status }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
-        if: always()
