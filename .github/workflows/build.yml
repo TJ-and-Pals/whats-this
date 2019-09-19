@@ -9,6 +9,12 @@ jobs:
   bundle:
     runs-on: ubuntu-latest
     steps:
+      - name: Notify slack
+        uses: pullreminders/slack-action@master
+        with:
+          args: '{\"channel\":\"CNC07GN01\",\"text\":\"starting build...\"}'
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
       - name: checkout repo
         uses: actions/checkout@v1
       - name: install node
@@ -27,7 +33,7 @@ jobs:
       - name: Notify slack
         uses: pullreminders/slack-action@master
         with:
-          args: '{\"channel\":\"CNC07GN01\",\"text\":\"job status: ${job.status} \"}'
+          args: '{\"channel\":\"CNC07GN01\",\"text\":\"build status: ${{job.status}} \"}'
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         if: always()
@@ -35,6 +41,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: bundle
     steps:
+      - name: Notify slack
+        uses: pullreminders/slack-action@master
+        with:
+          args: '{\"channel\":\"CNC07GN01\",\"text\":\"starting deploy...\"}'
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
       - name: checkout repo
         uses: actions/checkout@v1
       - name: download artifacts
@@ -49,3 +61,10 @@ jobs:
         env:
           PROJECT_ID: tjandpals-whats-this
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      - name: Notify slack
+        uses: pullreminders/slack-action@master
+        with:
+          args: '{\"channel\":\"CNC07GN01\",\"text\":\"deploy status: ${{job.status}} \"}'
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        if: always()
