@@ -37,19 +37,5 @@ a {
   font-family: "ITC Kabel Std";
   src: url("%CDN_COMMON%/fonts/ITCKabelStd-Ultra.otf") format("opentype"),
     url("%CDN_COMMON%/fonts/ITCKabelStd-Ultra.ttf") format("truetype"),
-    url("%CDN_COMMON%/fonts/ITCKabelStd-Ultra.woff") format("woff"),
-}
-
-@font-face {
-  font-family: "ITC Kabel Std Ultra";
-  src: url("%CDN_COMMON%/fonts/ITCKabelStd-Ultra.otf") format("opentype"),
-    url("%CDN_COMMON%/fonts/ITCKabelStd-Ultra.ttf") format("truetype"),
-    url("%CDN_COMMON%/fonts/ITCKabelStd-Ultra.woff") format("woff"),
-}
-
-@font-face {
-  font-family: "ITC Kabel Std Bold";
-  src: url("%CDN_COMMON%/fonts/ITCKabelStd-Bold.otf") format("opentype"),
-    url("%CDN_COMMON%/fonts/ITCKabelStd-Bold.ttf") format("truetype"),
-    url("%CDN_COMMON%/fonts/ITCKabelStd-Bold.woff") format("woff"),
+    url("%CDN_COMMON%/fonts/ITCKabelStd-Ultra.woff") format("woff");
 }
