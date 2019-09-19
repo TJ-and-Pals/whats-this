@@ -31,9 +31,9 @@ jobs:
         run: npm run bundle
       - name: preserve artifacts
         uses: actions/upload-artifact@v1
-          with:
-            name: dist
-            path: dist
+        with:
+          name: dist
+          path: dist
 
   deploy:
     runs-on: ubuntu-latest
@@ -41,13 +41,13 @@ jobs:
     steps:
       - name: restore artifacts
         uses: actions/download-artifact@v1
-          with:
-            name: dist
-            path: dist
+        with:
+          name: dist
+          path: dist
       - name: deploy to firebase
         uses: w9jds/firebase-action@v1.0.1
-          with:
-            args: deploy --only hosting -p dist
-          env:
-            PROJECT_ID: tjandpals-whats-this
-            FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        with:
+          args: deploy --only hosting -p dist
+        env:
+          PROJECT_ID: tjandpals-whats-this
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
