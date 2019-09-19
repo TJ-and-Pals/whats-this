@@ -37,7 +37,7 @@ jobs:
       - name: deploy to firebase
         uses: w9jds/firebase-action@v1.0.1
         with:
-          args: deploy --only hosting -p dist
+          args: deploy --only hosting
         env:
           PROJECT_ID: tjandpals-whats-this
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
