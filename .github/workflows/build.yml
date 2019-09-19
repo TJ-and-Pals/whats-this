@@ -6,7 +6,7 @@ on:
     - master
     
 jobs:
-  install:
+  bundle:
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo
@@ -15,18 +15,8 @@ jobs:
         uses: actions/setup-node@v1
       - name: install npm deps
         run: npm ci
-
-  test:
-    runs-on: ubuntu-latest
-    needs: install
-    steps:
       - name: run tests
         run: npm test
-
-  bundle:
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
       - name: bundle into dist
         run: npm run bundle
       - name: preserve artifacts
