@@ -1,6 +1,8 @@
 
 .home {
     position: absolute;
+    width: 100%;
+    height: 100%;
 }
 .home-tj {
     width: calc(324.76px * var(--scale));
@@ -8,4 +10,38 @@
     position: absolute;
     left: calc(60px * var(--scale));
     top: calc(104px * var(--scale));
+}
+
+.home > .banner-text {
+    position: absolute;
+    width: calc(591px * var(--scale));
+    left: calc(323px * var(--scale));
+    top: calc(172px * var(--scale));
+    letter-spacing: calc(0.02em * var(--scale));
+    font-family: "ITC Kabel Std";
+    font-weight: normal;
+    font-size: calc(81px * var(--scale));
+    line-height: calc(84px * var(--scale));
+    text-align: center;
+    color: #ffff01;
+    text-shadow: 7px 4px 15px rgba(0, 0, 0, 0.16);
+
+
+}
+
+.home .grade-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: calc(25px * var(--scale));
+    font-family: "ITC Kabel Std";
+    font-weight: normal;
+    font-size: calc(49px * var(--scale));
+    color: #fff;
+    position: absolute;
+    left: calc(400px * var(--scale));
+    top: calc(453px * var(--scale));
+}
+.home .grade-buttons > div {
+    width: calc(245px * var(--scale));
+    height: calc(53px * var(--scale));
 }

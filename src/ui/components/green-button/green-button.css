@@ -1,0 +1,14 @@
+.green-button {
+    border-radius: calc(34px * var(--scale));
+    border-color: rgba(0,0,0,0);
+    border-width: calc(10px * var(--scale));
+    border-style: solid;
+    background: #00bd45;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}
+
+.green-button:hover {
+    border-color: #e84141;
+}

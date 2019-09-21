@@ -1,0 +1,27 @@
+.circle-selector {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.circle-selector > .circle-outer {
+    width: calc(21px * var(--scale));
+    height: calc(21px * var(--scale));
+    -moz-border-radius:calc((21px * var(--scale)/2));
+    -webkit-border-radius:calc((21px * var(--scale)/2));
+    background-color: rgba(0,0,0,0);
+    border: calc(3px * var(--scale)) solid #FDF227;
+
+    margin-right: calc(11px * var(--scale));
+}
+
+
+.circle-selector > .circle-outer > .circle-inner {
+    position: relative;
+    top: calc(((21px - 11px)/2 - 3px) * var(--scale));
+    left: calc(((21px - 11px)/2 - 3px) * var(--scale));
+    width: calc(11px * var(--scale));
+    height: calc(11px * var(--scale));
+    -moz-border-radius:calc((11px * var(--scale)/2));
+    -webkit-border-radius:calc((11px * var(--scale)/2));
+    background-color: #FE0000;
+}
