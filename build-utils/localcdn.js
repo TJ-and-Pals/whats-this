@@ -12,6 +12,12 @@ const paths = {
             default: return `D:\\Dropbox (Personal)\\TJANDPALS\\tj-cdn`
         }
     },
+    avraham: (osPlatform) => {
+        switch(osPlatform) {
+            case "linux": return `/dropbox/container/Dropbox (Personal)/TJANDPALS/tj-cdn`
+            default: return `D:\\Dropbox (Personal)\\TJANDPALS\\tj-cdn`
+        }
+    },
 }
 
 const os = require('os');
