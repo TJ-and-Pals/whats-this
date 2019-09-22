@@ -20,13 +20,18 @@
     letter-spacing: calc(0.02em * var(--scale));
     font-family: "ITC Kabel Std";
     font-weight: normal;
-    font-size: calc(81px * var(--scale));
     line-height: calc(84px * var(--scale));
     text-align: center;
     color: #ffff01;
     text-shadow: 7px 4px 15px rgba(0, 0, 0, 0.16);
+}
 
+.home > .banner-text > .small {
+    font-size: calc(81px * var(--scale));
+}
 
+.home > .banner-text > .large {
+    font-size: calc(92px * var(--scale));
 }
 
 .home .grade-buttons {

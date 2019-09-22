@@ -14,9 +14,9 @@ export const home = () => {
         <div class="home">
             <img class="home-tj" src=${CdnPath.root("tj-graduate.png")} />
             <div class="banner-text">
-                TJ's<br/>
-                WHAT'S THIS?<br/>
-                Game
+                <div class="small">TJ's</div>
+                <div class="large">WHAT'S THIS?</div>
+                <div class="small">Game</div>
             </div>
                 <div class="grade-buttons">
                     <div>

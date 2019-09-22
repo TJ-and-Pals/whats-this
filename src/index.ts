@@ -1,6 +1,7 @@
 import {render, html} from "lit-html";
 import {ui} from "@ui/ui";
 import {update_state} from "@state/state";
+import {get_page} from "./router";
 import {STAGE_WIDTH, STAGE_HEIGHT} from "@config/config";
 import * as L from "partial.lenses";
 import "./index.css";
@@ -11,7 +12,7 @@ const rootElement = document.documentElement;
 
 const onTick = (now:number) => {
     requestAnimationFrame(onTick);
-    render(ui(), uiElement);
+    render(ui(get_page()), uiElement);
 }
 requestAnimationFrame(onTick);
 
