@@ -15,7 +15,7 @@ const paths = {
     avraham: (osPlatform) => {
         switch(osPlatform) {
             case "linux": return `/dropbox/container/Dropbox (Personal)/TJANDPALS/tj-cdn`
-            default: return `D:\\Dropbox (Personal)\\TJANDPALS\\tj-cdn`
+            default: return `C:\\Users\\Nacher\\Dropbox\\tj-cdn`
         }
     },
 }
