@@ -1,4 +1,4 @@
-header {
+.main-header {
     width: calc(1024px * var(--scale));
     height: calc(190px * var(--scale));
     position: absolute;
@@ -9,7 +9,7 @@ header {
     background-image: url("%CDN_COMMON%/top-curve.svg");
 }
 
-header > .logo {
+.main-header > .logo {
     position: absolute;
     top: calc(13px * var(--scale));
     left: calc(13px * var(--scale));
@@ -17,7 +17,7 @@ header > .logo {
     height: calc(87.28px * var(--scale));
 }
 
-header > .text {
+.main-header > .text {
     font-family: "ITC Kabel Std";
     font-weight: normal;
     font-size: calc(66px * var(--scale));

@@ -1,4 +1,4 @@
-footer {
+.main-footer {
     width: 100%;
     height: calc(48px * var(--scale));
     background-color: #00992D;
@@ -7,18 +7,18 @@ footer {
     left: 0;
 }
 
-footer > .grid {
+.main-footer > .grid {
     display: grid;
     grid-template-columns: 1fr calc(96.32px * var(--scale)) 1fr;
     height: 100%;
 }
 
-footer > .grid > * {
+.main-footer > .grid > * {
     display: flex;
     align-items: center;
 }
 
-footer .logo {
+.main-footer .logo {
     width: calc(96.32px * var(--scale));
     height: calc(42.54px * var(--scale));
 }

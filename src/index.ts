@@ -1,6 +1,5 @@
 import {render, html} from "lit-html";
 import {ui} from "@ui/ui";
-import {update_state} from "@state/state";
 import {home} from "@ui/pages/home";
 import {menu} from "@ui/pages/menu";
 import {ifState} from "@utils/xstate";
@@ -49,7 +48,6 @@ export const resizeApp = () => {
     rootElement.style.setProperty('font-size', `${17 * scale}px`);
     rootElement.style.setProperty('--scale', `${scale}`);
 
-    update_state(L.set("scale")(scale));
 }
 
 

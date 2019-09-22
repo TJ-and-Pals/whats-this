@@ -10,7 +10,7 @@ export const footer = (props?:Props) => {
     const left = props != null && props.left != null ? props.left : null;
     const right = props != null && props.right != null ? props.right: null;
     return html`
-    <footer>
+    <footer class="main-footer">
         <div class="grid">
             <div>
                 ${left}
