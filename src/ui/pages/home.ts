@@ -5,9 +5,13 @@ import {footer} from "@ui/common/footer";
 import {language_selector} from "@ui/components/language-selector/language-selector";
 import {green_button} from "@ui/components/green-button/green-button";
 import "./home.css";
+import {router_service} from "@state/router";
 
-const onSelect = () => {
+const onSelect = (grade: "rr" | "r") => {
+    
+    router_service.send("MENU");
 }
+
 export const home = () => {
     return html`
         ${header()}
@@ -20,10 +24,10 @@ export const home = () => {
             </div>
                 <div class="grade-buttons">
                     <div>
-                        ${green_button(onSelect) ("Grade RR")}
+                        ${green_button(() => onSelect("rr")) ("Grade RR")}
                     </div>
                     <div>
-                        ${green_button(onSelect) ("Grade R")}
+                        ${green_button(() => onSelect("r")) ("Grade R")}
                     </div>
                 </div>
         </div>

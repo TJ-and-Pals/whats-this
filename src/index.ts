@@ -1,7 +1,10 @@
 import {render, html} from "lit-html";
 import {ui} from "@ui/ui";
 import {update_state} from "@state/state";
-import {get_page} from "./router";
+import {home} from "@ui/pages/home";
+import {menu} from "@ui/pages/menu";
+import {ifState} from "@utils/xstate";
+import {router_service} from "@state/router";
 import {STAGE_WIDTH, STAGE_HEIGHT} from "@config/config";
 import * as L from "partial.lenses";
 import "./index.css";
@@ -12,7 +15,13 @@ const rootElement = document.documentElement;
 
 const onTick = (now:number) => {
     requestAnimationFrame(onTick);
-    render(ui(get_page()), uiElement);
+
+    const page = ifState({
+        home,
+        menu
+    }) (router_service.state);
+
+    render(ui(page), uiElement);
 }
 requestAnimationFrame(onTick);
 

@@ -1,4 +1,5 @@
 import {home} from "@ui/pages/home";
+import {menu} from "@ui/pages/menu";
 import {Machine, interpret} from "xstate";
 import {ifState} from "@utils/xstate";
 
@@ -27,11 +28,6 @@ const routeMachine = Machine({
     }
 });
 
-export const {state, send} = interpret(routeMachine)
+export const router_service = interpret(routeMachine)
   //.onTransition(state => console.log(state.value))
   .start();
-
-export const get_page = () =>
-    ifState({
-        home
-    }) (state);
