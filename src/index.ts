@@ -1,15 +1,15 @@
 import {render, html} from "lit-html";
-import {ui} from "@ui/ui";
-import {home} from "@ui/pages/home";
-import {menu} from "@ui/pages/menu";
+import {home} from "@pages/home/home";
+import {menu} from "@pages/menu/menu";
 import {ifState} from "@utils/xstate";
-import {router_service} from "@state/router";
+import {router_service} from "@components/router/router-state";
+import {set_stage_state} from "@components/stage/stage-state";
+import {stage} from "@components/stage/stage-view";
 import {STAGE_WIDTH, STAGE_HEIGHT} from "@config/config";
 import * as L from "partial.lenses";
 import "./index.css";
 
 const appElement = document.getElementById("app");
-const uiElement = document.getElementById("ui");
 const rootElement = document.documentElement;
 
 const onTick = (now:number) => {
@@ -20,7 +20,7 @@ const onTick = (now:number) => {
         menu
     }) (router_service.state);
 
-    render(ui(page), uiElement);
+    render(stage(page), appElement);
 }
 requestAnimationFrame(onTick);
 
@@ -38,12 +38,14 @@ export const resizeApp = () => {
         height = width / targetRatio;
     }
    
-    appElement.style.width = `${width}px`;
-    appElement.style.height= `${height}px`;
-    appElement.style.top = `${(window.innerHeight - height) / 2}px`;
-    appElement.style.left = `${(window.innerWidth - width) / 2}px`;
-
     const scale = width / STAGE_WIDTH;
+    set_stage_state({
+        x: (window.innerWidth - width) / 2,
+        y: (window.innerHeight- height) / 2,
+        width,
+        height,
+        scale
+    });
 
     rootElement.style.setProperty('font-size', `${17 * scale}px`);
     rootElement.style.setProperty('--scale', `${scale}`);

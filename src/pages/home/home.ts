@@ -1,11 +1,11 @@
 import {html} from "lit-html";
 import {CdnPath} from "@utils/path";
-import {header} from "@ui/common/header";
-import {footer} from "@ui/common/footer";
-import {language_selector} from "@ui/components/language-selector/language-selector";
-import {green_button} from "@ui/components/green-button/green-button";
+import {header} from "@pages/common/header";
+import {footer} from "@pages/common/footer";
+import {language_selector} from "@components/language-selector/language-selector";
+import {green_button} from "@components/green-button/green-button";
 import "./home.css";
-import {router_service} from "@state/router";
+import {router_service} from "@components/router/router-state";
 
 const onSelect = (grade: "rr" | "r") => {
     

@@ -1,7 +1,4 @@
-import {home} from "@ui/pages/home";
-import {menu} from "@ui/pages/menu";
-import {Machine, interpret} from "xstate";
-import {ifState} from "@utils/xstate";
+import { interpret, Machine } from "xstate";
 
 const pathname = window.location.pathname.replace("/", "");
 const initial = 
@@ -43,7 +40,6 @@ export const router_service = interpret(routeMachine)
         const pathName = state.matches("home") ? "/" : state.value.toString();
         window.history.pushState(null, null, pathName); 
     })
-  //.onTransition(state => console.log(state.value))
   .start();
 
 window.onpopstate = (evt) => {

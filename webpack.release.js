@@ -63,12 +63,13 @@ module.exports = {
     },
     resolve: {
         extensions: [".ts", ".js", ".css"],
+        mainFields: ["main", "module"],
         alias: {
-            "@events": path.resolve(__dirname, "src/events"),
-            "@state": path.resolve(__dirname, "src/state"),
-            "@ui": path.resolve(__dirname, "src/ui"),
+
+            "@components": path.resolve(__dirname, "src/components"),
             "@config": path.resolve(__dirname, "src/config"),
-            "@utils": path.resolve(__dirname, "src/utils"),
+            "@pages": path.resolve(__dirname, "src/pages"),
+            "@utils": path.resolve(__dirname, "src/utils")
         }
     }
 };

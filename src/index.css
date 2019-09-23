@@ -28,11 +28,6 @@ a {
 	text-decoration: none;
 }
 
-#app {
-    background-color: #0066A8;
-    position: absolute;
-}
-
 @font-face {
   font-family: "ITC Kabel Std";
   src: url("%CDN_COMMON%/fonts/ITCKabelStd-Ultra.otf") format("opentype"),
