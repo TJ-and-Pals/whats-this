@@ -1,6 +1,7 @@
 import {render, html} from "lit-html";
 import {home} from "@pages/home/home";
 import {menu} from "@pages/menu/menu";
+import {game} from "@pages/game/game";
 import {ifState} from "@utils/xstate";
 import {router_service} from "@components/router/router-state";
 import {set_stage_state} from "@components/stage/stage-state";
@@ -17,7 +18,8 @@ const onTick = (now:number) => {
 
     const page = ifState({
         home,
-        menu
+        menu,
+        game
     }) (router_service.state);
 
     render(stage(page), appElement);
@@ -39,9 +41,11 @@ export const resizeApp = () => {
     }
    
     const scale = width / STAGE_WIDTH;
+    const x = (window.innerWidth - width) / 2;
+    const y = (window.innerHeight- height) / 2;
     set_stage_state({
-        x: (window.innerWidth - width) / 2,
-        y: (window.innerHeight- height) / 2,
+        x,
+        y,
         width,
         height,
         scale
@@ -49,6 +53,10 @@ export const resizeApp = () => {
 
     rootElement.style.setProperty('font-size', `${17 * scale}px`);
     rootElement.style.setProperty('--scale', `${scale}`);
+    rootElement.style.setProperty('--stage-x', `${x}px`);
+    rootElement.style.setProperty('--stage-y', `${y}px`);
+    rootElement.style.setProperty('--stage-width', `${width}px`);
+    rootElement.style.setProperty('--stage-height', `${height}px`);
 
 }
 

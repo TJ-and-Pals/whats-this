@@ -1,0 +1,31 @@
+.pagination {
+    --arrow-width: calc(29px * var(--scale)); 
+    width: 100%;
+    display: grid;
+    grid-template-columns: var(--arrow-width) 1fr var(--arrow-width); 
+    /*background-color: red;*/
+}
+
+.pagination > .left-arrow, .pagination > .right-arrow {
+    width: var(--arrow-width);
+    cursor: pointer;
+}
+
+.pagination > .left-arrow.disabled, .pagination > .right-arrow.disabled {
+    opacity: .2;
+}
+
+.pagination > .middle-dots {
+    justify-self: center;
+    align-self: center;
+}
+
+.pagination .dot {
+    width: calc(14px * var(--scale));
+    height: calc(14px * var(--scale));
+    cursor: pointer;
+}
+
+.pagination .dot.deselected {
+    opacity: .2;
+}

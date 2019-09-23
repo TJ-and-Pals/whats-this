@@ -1,2 +1,52 @@
-.menu > header {
+.menu {
+    --full-width: calc((3 * var(--cell-width)) + (2 * var(--cell-gap)));
+    font-family: "ITC Kabel Std";
+    font-weight: normal;
+    position: absolute;
+    top: calc(172px * var(--scale));
+    left: calc((100% - var(--full-width)) / 2);
+    --cell-width: calc(243px * var(--scale));
+    --cell-height: calc(143px * var(--scale));
+    --cell-gap: calc(30px * var(--scale));
 }
+.menu > header {
+
+    font-size: calc(37px * var(--scale));
+    letter-spacing: 0.01em;
+    text-align: left;
+    color: #fefe00;
+    text-shadow: 7px 4px 15px rgba(0, 0, 0, 0.16);
+}
+
+.menu > .grid-row {
+    margin-top: calc(20px * var(--scale));
+    display: grid;
+    grid-template-columns: var(--cell-width) var(--cell-width) var(--cell-width); 
+    gap: var(--cell-gap); 
+    font-size: calc(39px * var(--scale));
+    letter-spacing: 0.03em;
+    text-align: center;
+    color: #fdfd00;
+    text-shadow: 7px 4px 15px rgba(0, 0, 0, 0.16);
+}
+
+.menu .cell {
+    display: block;
+    background-color: white;
+    width: var(--cell-width);
+    height: var(--cell-height);
+    border-radius: 11px;
+    border: 5px solid #00bc48;
+    cursor: pointer;
+}
+
+.menu .cell:hover {
+    border-color: #FE0000;
+}
+
+.menu .pagination {
+    position: fixed;
+    top: calc(var(--stage-y) + (663px * var(--scale)));
+    width: var(--full-width); 
+}
+

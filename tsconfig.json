@@ -25,7 +25,7 @@
             "@pages/*": ["src/pages/*"],
             "@tests/*": ["src/tests/*"],
             "@utils/*": ["src/utils/*"]
-        },
+        }
     },
     "include": [
         "./src/**/*.ts"

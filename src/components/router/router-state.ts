@@ -1,4 +1,4 @@
-import { interpret, Machine } from "xstate";
+import { interpret, Machine, assign } from "xstate";
 
 const pathname = window.location.pathname.replace("/", "");
 const initial = 
@@ -9,6 +9,9 @@ const initial =
 const routeMachine = Machine({
     id: "route",
     initial,
+    context: {
+        game: ""
+    },
     states: {
         home: { 
             on: {
@@ -19,7 +22,12 @@ const routeMachine = Machine({
             on: {
                 HOME: "home",
                 BACK: "home",
-                GAME: "menu"
+                GAME: {
+                    target: "game",
+                    actions: assign({
+                        game: (_, evt) => evt.game
+                    })
+                }
             }
         },
         game: { 
@@ -37,7 +45,10 @@ const routeMachine = Machine({
 
 export const router_service = interpret(routeMachine)
     .onTransition(state => {
-        const pathName = state.matches("home") ? "/" : state.value.toString();
+        let pathName = state.matches("home") ? "/" : state.value.toString();
+        if(pathName === "game") {
+            pathName += `/${state.context.game}`;
+        }
         window.history.pushState(null, null, pathName); 
     })
   .start();
