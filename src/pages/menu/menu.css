@@ -1,6 +1,5 @@
 .menu {
     --full-width: calc((3 * var(--cell-width)) + (2 * var(--cell-gap)));
-    font-family: "ITC Kabel Std";
     font-weight: normal;
     position: absolute;
     top: calc(172px * var(--scale));

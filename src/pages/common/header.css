@@ -18,7 +18,6 @@
 }
 
 .main-header > .text {
-    font-family: "ITC Kabel Std";
     font-weight: normal;
     font-size: calc(66px * var(--scale));
     letter-spacing: 0.02em;

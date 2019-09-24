@@ -22,3 +22,28 @@
     width: calc(96.32px * var(--scale));
     height: calc(42.54px * var(--scale));
 }
+
+.main-footer .left {
+    margin-left: calc(10px * var(--scale));
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.main-footer .arrow-icon {
+    height: calc(37px * var(--scale));
+    cursor: pointer;
+}
+.main-footer .home-icon {
+    margin-left: calc(10px * var(--scale));
+    height: calc(37px * var(--scale));
+    cursor: pointer;
+}
+
+
+.main-footer .arrow-icon.left {
+}
+.main-footer .arrow-icon.right {
+    position: absolute;
+    right: calc(20px * var(--scale));
+}

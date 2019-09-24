@@ -2,7 +2,6 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: calc(32px * var(--scale));
-    font-family: "ITC Kabel Std";
     font-weight: normal;
     font-size: calc(29px * var(--scale));
     text-align: left;

@@ -7,9 +7,9 @@ import {green_button} from "@components/green-button/green-button";
 import "./home.css";
 import {router_service} from "@components/router/router-state";
 
-const onSelect = (grade: "rr" | "r") => {
+const onSelect = (level: "rr" | "r") => {
     
-    router_service.send("MENU");
+    router_service.send({type: "MENU", level});
 }
 
 export const home = () => {
