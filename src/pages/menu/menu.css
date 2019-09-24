@@ -40,6 +40,11 @@
     cursor: pointer;
 }
 
+.menu .cell > img {
+    width: 100%;
+    height: 100%;
+}
+
 .menu .cell:hover {
     border-color: #FE0000;
 }

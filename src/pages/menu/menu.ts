@@ -62,12 +62,12 @@ const ready = ({menu, page}:{menu:Menu, page:number}) => {
 
 const make_item = (item:Item) => {
     const onSelect = () => {
-        router_service.send({type: "GAME", game: item.label});
+        router_service.send({type: "GAME", game: item.name});
     }
     return html`
         <div>
             <div @click=${onSelect} class="cell">
-                <img src=${CdnPath.root(`media/image/${item.name}.jpg`)} />
+                <img src=${CdnPath.root(`media/menu/${item.name}.png`)} />
             </div>
             ${item.label}
         </div>

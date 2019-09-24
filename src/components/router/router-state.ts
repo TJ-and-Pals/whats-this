@@ -1,6 +1,9 @@
 import { interpret, Machine, assign } from "xstate";
 
-const pathname = window.location.pathname.replace("/", "");
+export const pathname = window.location.pathname.replace("/", "");
+export const pages = pathname.indexOf("/") === -1 ? [pathname] : pathname.split("/");
+export const pathRoot = pages[0];
+
 const initial = 
     pathname === "menu" ? "menu"
     : pathname === "game" ? "game"
