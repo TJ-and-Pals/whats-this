@@ -47,3 +47,7 @@
     position: absolute;
     right: calc(20px * var(--scale));
 }
+
+.arrow-icon.disabled {
+    opacity: .2
+}

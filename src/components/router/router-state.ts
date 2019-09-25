@@ -16,7 +16,7 @@ const routeMachine = Machine({
     initial,
     context: {
         game: pathRoot === "game" ? pages[1] : "",
-        level: pathRoot === "game" ? pages[2] : "",
+        level: pathRoot === "game" ? pages[2] : "rr",
     },
     states: {
         home: { 

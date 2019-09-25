@@ -26,5 +26,5 @@ export const shuffle_array_mut = <T>(a:Array<T>):Array<T> => {
     return a;
 }
 
-export const shuffle_array = <T>(a:Array<T>):Array<T> => 
+export const shuffle_array_clone = <T>(a:Array<T>):Array<T> => 
     shuffle_array_mut(a.slice(0));

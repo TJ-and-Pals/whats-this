@@ -1,0 +1,24 @@
+.random-selector {
+    font-weight: normal;
+    font-size: calc(27px * var(--scale));
+    text-align: left;
+    color: #fdf227;
+    display: flex;
+    align-items: center;
+    margin-right: calc(20px * var(--scale));
+    cursor: pointer;
+}
+
+.random-selector .box {
+    width: calc(23px * var(--scale));
+    height: calc(23px * var(--scale));
+    border: calc(3px * var(--scale)) solid #fdf227;
+    margin-right: calc(10px * var(--scale));
+}
+
+.random-selector .box.selected {
+    background-image: url("%CDN_COMMON%/bottom-bar/red-tick.svg");
+    background-size: contain; 
+    background-repeat: no-repeat;
+    background-position: center;
+}

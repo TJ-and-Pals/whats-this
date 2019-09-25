@@ -10,6 +10,7 @@ import {get_service} from "./menu-state";
 import {Menu, Item} from "./menu-types";
 import {pagination} from "@components/pagination/pagination";
 import {repeat} from 'lit-html/directives/repeat';
+import {random_selector} from "@components/random-selector/random-selector";
 import "./menu.css";
 import { stateValuesEqual } from "xstate/lib/State";
 
@@ -27,7 +28,11 @@ export const menu = () => {
             error
         }) (state)
         }
-        ${footer({right: language_selector()})}
+        ${footer({right: html`
+            ${language_selector()}
+            ${random_selector()}
+            `
+        })}
     `
 }
 

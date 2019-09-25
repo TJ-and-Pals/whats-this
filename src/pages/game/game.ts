@@ -2,7 +2,7 @@ import {html} from "lit-html";
 import {CdnPath} from "@utils/path";
 import {router_service} from "@components/router/router-state";
 import {header} from "@pages/common/header";
-import {footer, footer_left, footer_arrow_right} from "@pages/common/footer";
+import {footer, footer_left, footer_arrow_right, footer_arrow_left} from "@pages/common/footer";
 import {language_selector} from "@components/language-selector/language-selector";
 import {green_button} from "@components/green-button/green-button";
 import {ifState} from "@utils/xstate";
@@ -45,10 +45,10 @@ export const game = () => {
         ${footer({
             right: html`
                 ${language_selector()}
-                ${on_right_arrow && footer_arrow_right(on_right_arrow)}
+                ${footer_arrow_right(on_right_arrow)}
             `,
             left: footer_left({
-                on_left_arrow,
+                left_of_home: footer_arrow_left(on_left_arrow),
                 home: true
             })
         })}

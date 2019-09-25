@@ -8,6 +8,7 @@ import {router_service} from "@components/router/router-state";
 import {random_index, random_suffix_2, shuffle_array_mut} from "@utils/rand";
 import {play_global_oneshot, play_oneshot_future} from "@utils/audio";
 import {set_language, get_language} from "@components/language-selector/language-selector-state";
+import {get_random_selector} from "@components/random-selector/random-selector-state";
 
 const machine = Machine({
     id: "game",
@@ -32,10 +33,17 @@ const machine = Machine({
                     target: "init",
                     actions: assign({
                         current_index: () => 0,
-                        json: (_, evt) => ({
-                            ...evt.data,
-                            items: evt.data.items.filter(item => !item.disabled)
-                        })
+                        json: (_, evt) => {
+                            const items = evt.data.items;
+                            if(get_random_selector()) {
+                                shuffle_array_mut(items);
+                            }
+                            
+                            return {
+                                ...evt.data,
+                                items: items.filter(item => !item.disabled)
+                            }
+                        }
                     }) as any
                 },
                 REJECT: {

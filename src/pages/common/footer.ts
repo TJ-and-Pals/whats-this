@@ -28,16 +28,16 @@ export const footer = (props?:Props) => {
 }
 
 interface LeftProps {
-    on_left_arrow?: () => unknown; 
+    left_of_home?: any
     home?: boolean; 
 }
 
-export const footer_left = ({on_left_arrow, home}:LeftProps) => {
+export const footer_left = ({left_of_home, home}:LeftProps) => {
     const on_home = () => router_service.send("HOME");
 
     return html`
         <div class="left">
-            ${on_left_arrow && footer_arrow_left(on_left_arrow)}
+            ${left_of_home}
             ${home && html`
                 <img class="home-icon" @click=${on_home} src=${CdnPath.common("bottom-bar/home.svg")} />
             `}
@@ -45,10 +45,22 @@ export const footer_left = ({on_left_arrow, home}:LeftProps) => {
     `
 }
 
-export const footer_arrow_left = (on_click:() => unknown) => html`
-    <img class="arrow-icon left" @click=${on_click} src=${CdnPath.common("bottom-bar/arrow-left.svg")} />
+export const footer_arrow_left = (on_click:() => unknown) => {
+    let classes = `arrow-icon left`;
+    if(!on_click) {
+        classes += ` disabled`;
+    }
+    return html`
+        <img class=${classes} @click=${on_click} src=${CdnPath.common("bottom-bar/arrow-left.svg")} />
     `;
+}
 
-export const footer_arrow_right = (on_click:() => unknown) => html`
-    <img class="arrow-icon right" @click=${on_click} src=${CdnPath.common("bottom-bar/arrow-right.svg")} />
+export const footer_arrow_right = (on_click:() => unknown) => {
+    let classes = `arrow-icon right`;
+    if(!on_click) {
+        classes += ` disabled`;
+    }
+    return html`
+        <img class=${classes} @click=${on_click} src=${CdnPath.common("bottom-bar/arrow-right.svg")} />
     `;
+}
