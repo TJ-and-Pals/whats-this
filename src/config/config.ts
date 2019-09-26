@@ -19,7 +19,7 @@ export const MAX_FEEDBACK = {
     },
     bad: {
         english: 3,
-        zulu: 3,
+        zulu: 7,
     },
     good: {
         english: 16,
