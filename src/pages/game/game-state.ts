@@ -3,6 +3,7 @@ import * as F from "fluture";
 import {future_to_callback, invoke_future} from "@utils/xstate";
 import {fetchJsonUrl} from "fluture-loaders";
 import {CdnPath} from "@utils/path";
+import {MAX_FEEDBACK} from "@config/config";
 import {GameJson, Game, GameItem} from "./game-types"
 import {router_service} from "@components/router/router-state";
 import {random_index, random_suffix_2, shuffle_array_mut} from "@utils/rand";
@@ -147,21 +148,20 @@ const machine = Machine({
 });
 
 function get_random_intro() {
-    const suffix = random_suffix_2 (9);
     const lang = get_language();
+    const suffix = random_suffix_2 (MAX_FEEDBACK.intro[lang]);
     return CdnPath.root(`media/audio/${lang}/common/question-variations-${suffix}.mp3`);
 }
 
 function get_random_bad_feedback() {
-    const suffix = random_suffix_2 (3);
     const lang = get_language();
+    const suffix = random_suffix_2 (MAX_FEEDBACK.bad[lang]);
     return CdnPath.root(`media/audio/${lang}/common/wrong-answer-variations-${suffix}.mp3`);
 }
 
 function get_random_good_feedback() {
-    const suffix = random_suffix_2 (16);
     const lang = get_language();
-
+    const suffix = random_suffix_2 (MAX_FEEDBACK.good[lang]);
     return CdnPath.root(`media/audio/${lang}/common/correct-answer-variations-${suffix}.mp3`);
 }
 
