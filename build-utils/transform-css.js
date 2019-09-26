@@ -1,9 +1,5 @@
-//If you change it here - also change:
-//1. config/Config.ts
-//2. build-utils/localcdn.js
-
-const CDN_HOST = process.env['NODE_ENV'] === "production"
-    ? "https://storage.googleapis.com/tjandpals-cdn-eu"
+const CDN_HOST = process.env['PLATFORM'] === "electron" ? "/cdn" 
+    : process.env['NODE_ENV'] === "production" ? "https://storage.googleapis.com/tjandpals-cdn-eu"
     : "http://localhost:4102";
 
 const CDN_ROOT = CDN_HOST + "/apps/whats-this";

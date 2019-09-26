@@ -1,0 +1,33 @@
+{
+  "name": "whats-this",
+  "version": "0.0.1",
+  "description": "TJ and Pals - What's This",
+  "main": "main.js",
+  "scripts": {
+    "postinstall": "electron-builder install-app-deps",
+    "preelectron-pack": "npm build",
+    "dist": "electron-builder -w",
+    "start": "electron ."
+  },
+  "homepage": "./",
+  "author": "TJ and Pals Media Inc.",
+  "license": "UNLICENSED",
+  "build": {
+    "appId": "whatsthis",
+    "directories": {
+      "output": "binary"
+    },
+    "nsis": {
+      "artifactName": "${productName}-setup.${ext}"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "icon.ico"
+    }
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "latest",
+    "electron-builder": "latest"
+  }
+}

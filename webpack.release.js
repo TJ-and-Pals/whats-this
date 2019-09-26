@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
+const webpack = require('webpack');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -13,7 +14,9 @@ module.exports = {
 		})]
     },
     context: process.cwd(), // to automatically find tsconfig.json
-    entry: "./src/index.ts",
+    entry: {
+        app: "./src/index.ts",
+    },
     output: {
         path: path.join(process.cwd(), 'dist'),
         filename: '[name].js',
@@ -41,6 +44,12 @@ module.exports = {
                 minifyCSS: true,
                 minifyURLs: true,
             },
+        }),
+
+        new webpack.DefinePlugin({
+            'process.env': {
+                'PLATFORM': JSON.stringify(process.env["PLATFORM"]),
+            }
         }),
     ],
     module: {

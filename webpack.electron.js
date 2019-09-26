@@ -1,30 +1,48 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const webpack = require('webpack');
-const ForkTsCheckerNotifierWebpackPlugin = require('fork-ts-checker-notifier-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
+    mode: "production",
+    optimization: {
+		minimizer: [new TerserPlugin({
+			parallel: true,
+		})]
+    },
     context: process.cwd(), // to automatically find tsconfig.json
     entry: {
         app: "./src/index.ts",
     },
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.join(process.cwd(), 'dist'),
         filename: '[name].js',
-        publicPath: "/"
     },
     plugins: [
         new ForkTsCheckerWebpackPlugin({
-            eslint: false
+            async: false,
+            useTypescriptIncrementalApi: true,
+            memoryLimit: 4096
         }),
-        new ForkTsCheckerNotifierWebpackPlugin({ title: 'TypeScript', excludeWarnings: false }),
         new HtmlWebpackPlugin({
+            //hash: true,
             inject: true,
-            template: 'src/index.html'
+            template: 'src/index.html',
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                removeRedundantAttributes: true,
+                useShortDoctype: true,
+                removeEmptyAttributes: true,
+                removeStyleLinkTypeAttributes: true,
+                keepClosingSlash: true,
+                minifyJS: true,
+                minifyCSS: true,
+                minifyURLs: true,
+            },
         }),
-        new webpack.HotModuleReplacementPlugin(),
 
         new webpack.DefinePlugin({
             'process.env': {
@@ -38,13 +56,14 @@ module.exports = {
                 test: /.ts$/,
                 use: [
                     { loader: 'ts-loader', options: { transpileOnly: true } }
-                ]
+                ],
             },
             {
+
                 test: /\.css$/i,
                 use: [
                     'style-loader', 
-                    'css-loader',
+                    {loader: 'css-loader', options: {url: false}},
                     path.resolve(__dirname, "build-utils/transform-css.js"),
                 ],
             },
@@ -57,21 +76,7 @@ module.exports = {
             "@components": path.resolve(__dirname, "src/components"),
             "@config": path.resolve(__dirname, "src/config"),
             "@pages": path.resolve(__dirname, "src/pages"),
-            "@utils": path.resolve(__dirname, "src/utils"),
+            "@utils": path.resolve(__dirname, "src/utils")
         }
-    },
-    devtool: 'inline-source-map',
-    devServer: {
-        contentBase: path.resolve(__dirname, './_static'),
-        compress: true,
-        port: 3000,
-        clientLogLevel: 'warning',
-        open: true,
-        historyApiFallback: true,
-        stats: 'errors-only',
-        watchOptions: {
-            ignored: ['node_modules', 'target', 'pkg', '**/*.rs', '**/*.js']
-        },
-        watchContentBase: true,
     }
-};
+}

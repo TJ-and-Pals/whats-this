@@ -24,7 +24,7 @@ jobs:
       - name: run tests
         run: npm test
       - name: bundle into dist
-        run: npm run bundle
+        run: npm run bundle:site
       - name: upload artifacts
         uses: actions/upload-artifact@master
         with:
