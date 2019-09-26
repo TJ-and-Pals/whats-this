@@ -22,7 +22,7 @@
     },
     "win": {
       "target": "nsis",
-      "icon": "icon.ico"
+      "icon": "./cdn/apps/common/icon/tj-square-icon-1024.png"
     }
   },
   "dependencies": {},
