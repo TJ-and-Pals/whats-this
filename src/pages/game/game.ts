@@ -12,6 +12,7 @@ import {repeat} from 'lit-html/directives/repeat';
 import {Game, GameItem} from "./game-types";
 import {get_language} from "@components/language-selector/language-selector-state";
 import "./game.css";
+import { classMap } from "lit-html/directives/class-map";
 
 export const game = () => {
     const {state, send} = get_service();
@@ -34,7 +35,7 @@ export const game = () => {
     stateMap.set("error", error);
     stateMap.set("init", () => null);
     stateMap.set("end", () => null);
-    stateMap.set(["play", "waiting_correct"], () => play(context.game));
+    stateMap.set(["play", "waiting_correct"], () => play(context.game, context.isShowingCorrect));
 
     if(state.matches("waiting")) {
         send("LOAD");
@@ -68,7 +69,7 @@ const error = () => html`
 `;
 
 
-const play = (game:Game) => {
+const play = (game:Game, isShowingCorrect: boolean) => {
     const game_name = router_service.state.context.game;
     const correct = game.choices[game.correct_index]; 
     const wrong = game.choices.filter((_, idx) => idx !== game.correct_index);
@@ -83,24 +84,26 @@ const play = (game:Game) => {
         }
     }
 
-    const lang = get_language();
+    const getText = (item:GameItem) => get_language() === "english" ? item.label_en : item.label_zu;
 
     return html`
         <div class="game">
             <div class="hint">
                 <img src=${CdnPath.root(`media/image/${game_name}/${correct.name}.jpg`)} />
             </div>
+            <div class="answerText">${isShowingCorrect ? getText(correct) : ""}</div>
             <div class="choices-container">
                 <div class="choices">
-                    ${game.choices.map((choice, index) => 
-                        html`
+                    ${game.choices.map((choice, index) => {
+                        const isCorrect = index === game.correct_index;
+                        return html`
                             <div class="choice">
-                                <div class="green-button" @click=${() => on_click(index)}>
-                                    ${lang === "english" ? choice.label_en : choice.label_zu}
+                                <div class=${classMap({["green-button"]: !isShowingCorrect, ["green-button-nohover"]: isShowingCorrect, correct: isCorrect && isShowingCorrect})} @click=${() => on_click(index)}>
+                                    ${getText(choice)}
                                 </div>
                             </div>
                         `
-                    )}
+                    })}
                 </div>
             </div>
         </div>

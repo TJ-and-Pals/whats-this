@@ -1,4 +1,4 @@
-.green-button {
+.green-button, .green-button-nohover {
     border-radius: calc(34px * var(--scale));
     border-color: rgba(0,0,0,0);
     border-width: calc(10px * var(--scale));

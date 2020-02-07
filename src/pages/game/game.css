@@ -5,10 +5,10 @@
 }
 .game > .hint {
     position: absolute;
-    left: calc(337px * var(--scale));
+    left: calc(((1024px - 450px)/2) * var(--scale));
     top: calc(163px * var(--scale));
-    width: calc(350px * var(--scale));
-    height: calc(347px * var(--scale));
+    width: calc(450px * var(--scale));
+    height: calc(350px * var(--scale));
 }
 
 .game > .hint > img {
@@ -29,8 +29,21 @@
     margin: 0 auto;
 }
 
+.game > .answerText {
+    position: absolute;
+    color: #3AB54B;
+    font-size: calc(76px * var(--scale));
+    top: calc(512px * var(--scale));
+    text-align: center;
+    width: 100%;
+}
+
 .game .choice {
     width: calc(244.63px * var(--scale));
     height: calc(53.26px * var(--scale));
     font-size: 2rem;
+}
+
+.game .correct {
+    border-color: #FFFF01
 }

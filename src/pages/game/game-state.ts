@@ -17,7 +17,8 @@ const machine = Machine({
     context: {
         json: {},
         current_index: 0,
-        game: {}
+        game: {},
+        isShowingCorrect: false
     },
     states: {
         waiting: {
@@ -93,6 +94,12 @@ const machine = Machine({
         },
 
         waiting_correct: {
+            onEntry: assign({
+                isShowingCorrect: () => true 
+            }),
+            onExit: assign({
+                isShowingCorrect: () => false
+            }),
             invoke: {
                 src: invoke_future((ctx) => {
                     const game_name = router_service.state.context.game;
