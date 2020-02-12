@@ -29,3 +29,7 @@
     left: calc(400px * var(--scale));
     top: calc(21px * var(--scale));
 }
+
+.main-header > .text.zulu {
+    left: calc(300px * var(--scale));
+}

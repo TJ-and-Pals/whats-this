@@ -10,7 +10,7 @@ export const header = () => {
     return html`
         <header class="main-header">
             <img class="logo" src=${CdnPath.common("tj-logo-header.png")} />
-            <div class="text">${header}</div>
+            <div class="text ${lang}">${header}</div>
         </header>
     `;
 }
