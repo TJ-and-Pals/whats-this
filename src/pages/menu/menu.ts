@@ -4,6 +4,7 @@ import {router_service} from "@components/router/router-state";
 import {header} from "@pages/common/header";
 import {footer} from "@pages/common/footer";
 import {language_selector} from "@components/language-selector/language-selector";
+import {set_language, get_language} from "@components/language-selector/language-selector-state";
 import {green_button} from "@components/green-button/green-button";
 import {ifState} from "@utils/xstate";
 import {get_service} from "./menu-state";
@@ -51,10 +52,11 @@ const ready = ({menu, page}:{menu:Menu, page:number}) => {
         send({type: "PAGE", page});
     }
 
+    const chooseText = get_language() === "english" ? "Choose:": "Khetha:"; 
 
     return html`
         <div class="menu">
-            <header>Choose:</header>
+            <header>${chooseText}</header>
             <div class="grid-row">
                 ${
                     repeat(section, item => item.name, (item, idx) => make_item(item))
@@ -69,12 +71,15 @@ const make_item = (item:Item) => {
     const onSelect = () => {
         router_service.send({type: "GAME", game: item.name});
     }
+
+    const label = get_language() === "english" ? item.label_en : item.label_zu;
+
     return html`
         <div>
             <div @click=${onSelect} class="cell">
                 <img src=${CdnPath.root(`media/menu/${item.name}.png`)} />
             </div>
-            ${item.label}
+            ${label}
         </div>
     `;
 }

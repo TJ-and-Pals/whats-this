@@ -5,7 +5,8 @@ export interface Menu {
 export type Section = Array<Item>
 
 export interface Item {
-    label: string;
+    label_en: string;
+    label_zu: string;
     name: string;
 }
 
