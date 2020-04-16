@@ -37,6 +37,9 @@ const machine = Machine({
         },
         ready: {
             on: {
+                RELOAD: {
+                    target: "loading",
+                },
                 PAGE: {
                     actions: assign({
                         page: (ctx, evt) => evt.page
@@ -50,7 +53,7 @@ const machine = Machine({
 });
 
 function loadMenuConfig(level:string) {
-    return fetchJsonUrl (CdnPath.root(`config/menu-${level}.json`))
+    return fetchJsonUrl (CdnPath.root(`config/menu-${level}.json?cb=${Date.now()}`))
 }
 
 let _service;

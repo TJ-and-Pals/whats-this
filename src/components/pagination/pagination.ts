@@ -1,4 +1,4 @@
-import {html} from "lit-html";
+import {html, nothing} from "lit-html";
 import {CdnPath} from "@utils/path";
 import {repeat} from 'lit-html/directives/repeat';
 import "./pagination.css";
@@ -10,11 +10,16 @@ interface Props {
 }
 
 export const pagination = ({total, current, onPage}:Props) => {
+    if(total < 2) {
+        return html`${nothing}`;
+    }
+
     const handle_left = () => onPage(Math.max(current-1, 0));
     const handle_right = () => onPage(Math.min(current+1, total));
     const handle_dot = onPage; 
 
     const xs = Array(total).fill(null).map((_, idx) => idx);
+
 
     const left_arrow_class = current > 0
         ? "left-arrow"

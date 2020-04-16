@@ -16,7 +16,9 @@ const routeMachine = Machine({
     initial,
     context: {
         game: pathRoot === "game" ? pages[1] : "",
-        level: pathRoot === "game" ? pages[2] : "rr",
+        level: pathRoot === "game" ? pages[2] 
+            : pathRoot === "menu" ? pages[1]
+            : "rr",
     },
     states: {
         home: { 
@@ -63,6 +65,8 @@ export const router_service = interpret(routeMachine)
         let pathName = state.matches("home") ? "/" : "/" + state.value.toString();
         if(state.matches("game")) {
             pathName += `/${state.context.game}/${state.context.level}`;
+        }else if(state.matches("menu")) {
+            pathName += `/${state.context.level}`;
         }
         window.history.pushState(null, null, pathName); 
     })

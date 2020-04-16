@@ -19,7 +19,9 @@ const onSelect = () => {
 }
 
 export const menu = () => {
-    const {state} = get_service();
+    const {state, send} = get_service();
+
+    send("RELOAD");
 
     return html`
         ${header()}
