@@ -53,7 +53,7 @@ const machine = Machine({
 });
 
 function loadMenuConfig(level:string) {
-    return fetchJsonUrl (CdnPath.root(`config/menu-${level}.json?cb=${Date.now()}`))
+    return fetchJsonUrl (CdnPath.root(`config/menu-${level}.json`))
 }
 
 let _service;
