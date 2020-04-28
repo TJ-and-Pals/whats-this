@@ -34,7 +34,9 @@ export const game = () => {
     stateMap.set("loading", loading);
     stateMap.set("error", error);
     stateMap.set("init", () => null);
-    stateMap.set("end", () => null);
+    stateMap.set("end", () => {
+        router_service.send("MENU");
+    });
     stateMap.set(["play", "waiting_correct"], () => play(context.game, context.isShowingCorrect));
 
     if(state.matches("waiting")) {

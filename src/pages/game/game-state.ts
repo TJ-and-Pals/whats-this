@@ -177,6 +177,10 @@ function load_game_config() {
     const {level} = router_service.state.context;
 
     return fetchJsonUrl (CdnPath.root(`config/sections/${game}-${level}.json`))
+        .map(json => ({
+            ...json,
+            items: json.items.slice(0,3)
+        }))
 }
 
 let _service;

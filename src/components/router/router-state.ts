@@ -46,6 +46,7 @@ const routeMachine = Machine({
         game: { 
             on: {
                 BACK: "menu",
+                MENU: "menu",
                 HOME: "home"
             },
             onExit: () => {
