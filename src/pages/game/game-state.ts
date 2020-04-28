@@ -121,11 +121,17 @@ const machine = Machine({
                 src: invoke_future((ctx) => {
                     const game_name = router_service.state.context.game;
                     const lang = get_language();
-                    const item_name = ctx.game.choices[ctx.game.correct_index].name;
+                    const item:GameItem = ctx.game.choices[ctx.game.correct_index];
 
-                    return play_oneshot_future(
-                        CdnPath.root(`media/audio/${lang}/${game_name}/${item_name}.mp3`)
-                    ).chain(() => play_oneshot_future(get_random_good_feedback()))
+                    if(item.custom_answer) {
+                        return play_oneshot_future(
+                            CdnPath.root(`media/audio/${lang}/${game_name}/${item.name}_answer.mp3`)
+                        )
+                    } else {
+                        return play_oneshot_future(
+                            CdnPath.root(`media/audio/${lang}/${game_name}/${item.name}.mp3`)
+                        ).chain(() => play_oneshot_future(get_random_good_feedback()))
+                    }
                 }) 
             },
             on: {
