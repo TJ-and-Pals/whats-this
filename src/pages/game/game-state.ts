@@ -18,7 +18,8 @@ const machine = Machine({
         json: {},
         current_index: 0,
         game: {},
-        isShowingCorrect: false
+        isShowingCorrect: false,
+        firstPlayAudioQuestion: true,
     },
     states: {
         waiting: {
@@ -34,6 +35,7 @@ const machine = Machine({
                 RESOLVE: {
                     target: "init",
                     actions: assign({
+                        firstPlayAudioQuestion: () => true,
                         current_index: () => 0,
                         json: (_, evt) => {
                             const items = evt.data.items;
@@ -80,7 +82,15 @@ const machine = Machine({
         },
 
         play: {
-            onEntry: () => play_global_oneshot(get_random_intro()),
+            onEntry: [
+                (ctx:any) => play_global_oneshot(get_random_intro(ctx.isFirstPlayAudioQuestion)),
+                //assigns actually always happen first, which is why we use the cached var
+                assign({
+                    firstPlayAudioQuestion: () => false,
+                    isFirstPlayAudioQuestion: (ctx) => ctx.firstPlayAudioQuestion
+                }) as any
+            ],
+
             on: {
                 NEXT: "next",
                 PREV: "prev",
@@ -154,7 +164,8 @@ const machine = Machine({
     }
 });
 
-function get_random_intro() {
+function get_random_intro(firstPlay) {
+    console.log(firstPlay);
     const lang = get_language();
     const suffix = random_suffix_2 (MAX_FEEDBACK.intro[lang]);
     return CdnPath.root(`media/audio/${lang}/common/question-variations-${suffix}.mp3`);
