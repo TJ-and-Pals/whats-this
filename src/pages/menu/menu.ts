@@ -6,6 +6,7 @@ import {footer} from "@pages/common/footer";
 import {language_selector} from "@components/language-selector/language-selector";
 import {set_language, get_language} from "@components/language-selector/language-selector-state";
 import {green_button} from "@components/green-button/green-button";
+import {play_global_oneshot, play_oneshot_future, stop_global_oneshot} from "@utils/audio";
 import {ifState} from "@utils/xstate";
 import {get_service} from "./menu-state";
 import {Menu, Item} from "./menu-types";
@@ -74,11 +75,22 @@ const make_item = (item:Item) => {
         router_service.send({type: "GAME", game: item.name});
     }
 
+    const onHover = () => {
+
+        const lang = get_language();
+        const path = CdnPath.root(`media/audio/${lang}/${item.name}.mp3`);
+        play_global_oneshot(path);
+    }
+
+    const onHoverOut = () => {
+        stop_global_oneshot();
+    }
+
     const label = get_language() === "english" ? item.label_en : item.label_zu;
 
     return html`
         <div>
-            <div @click=${onSelect} class="cell">
+            <div @click=${onSelect} class="cell" @mouseover=${onHover} @mouseout=${onHoverOut}>
                 <img src=${CdnPath.root(`media/menu/${item.name}.png`)} />
             </div>
             ${label}
