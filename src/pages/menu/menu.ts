@@ -21,7 +21,7 @@ const onSelect = () => {
 export const menu = () => {
     const {state, send} = get_service();
 
-    send("RELOAD");
+    send("RELOAD_LEVEL");
 
     return html`
         ${header()}

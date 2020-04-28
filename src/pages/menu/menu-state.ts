@@ -7,17 +7,26 @@ import {router_service} from "@components/router/router-state";
 
 const machine = Machine({
     id: "menu",
-    initial: "loading",
+    initial: "load_level",
     context: {
         menu: {},
+        level: "",
         page: 0,
     },
     states: {
+        load_level: {
+            onEntry: assign({
+                level: () => router_service.state.context.level
+            }),
+            on: {
+                '': "loading"
+            }
+        },
         loading: { 
+
             invoke: {
-                src: invoke_future(() => {
-                    const {level} = router_service.state.context;
-                    return loadMenuConfig(level);
+                src: invoke_future((ctx) => {
+                    return loadMenuConfig(ctx.level);
                 }) 
             },
             on: {
@@ -37,8 +46,12 @@ const machine = Machine({
         },
         ready: {
             on: {
-                RELOAD: {
-                    target: "loading",
+                RELOAD_LEVEL: {
+                    target: "load_level",
+                    cond: (ctx) => {
+                        const {level} = router_service.state.context;
+                        return (ctx.level != level);
+                    }
                 },
                 PAGE: {
                     actions: assign({
