@@ -83,7 +83,14 @@ const machine = Machine({
 
         play: {
             onEntry: [
-                (ctx:any) => play_global_oneshot(get_random_intro(ctx.isFirstPlayAudioQuestion)),
+                (ctx:any) => {
+                    const item:GameItem = ctx.game.choices[ctx.game.correct_index];
+                    if(item.custom_question) {
+                        play_global_oneshot(get_custom_intro(item));
+                    } else {
+                        play_global_oneshot(get_random_intro(ctx.isFirstPlayAudioQuestion));
+                    }
+                },
                 //assigns actually always happen first, which is why we use the cached var
                 assign({
                     firstPlayAudioQuestion: () => false,
@@ -115,6 +122,7 @@ const machine = Machine({
                     const game_name = router_service.state.context.game;
                     const lang = get_language();
                     const item_name = ctx.game.choices[ctx.game.correct_index].name;
+
                     return play_oneshot_future(
                         CdnPath.root(`media/audio/${lang}/${game_name}/${item_name}.mp3`)
                     ).chain(() => play_oneshot_future(get_random_good_feedback()))
@@ -164,8 +172,12 @@ const machine = Machine({
     }
 });
 
+function get_custom_intro(item:GameItem) {
+    const game_name = router_service.state.context.game;
+    const lang = get_language();
+    return CdnPath.root(`media/audio/${lang}/${game_name}/${item.name}_question.mp3`);
+}
 function get_random_intro(firstPlay) {
-    console.log(firstPlay);
     const lang = get_language();
     const suffix = random_suffix_2 (MAX_FEEDBACK.intro[lang]);
     return CdnPath.root(`media/audio/${lang}/common/question-variations-${suffix}.mp3`);

@@ -6,7 +6,9 @@ export interface GameItem {
     name: string;
     label_en: string;
     label_zu: string;
-    disabled?: boolean
+    disabled?: boolean;
+    custom_question?: boolean;
+    custom_answer?: boolean;
 }
 
 export interface Game {
