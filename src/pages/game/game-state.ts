@@ -177,10 +177,13 @@ function load_game_config() {
     const {level} = router_service.state.context;
 
     return fetchJsonUrl (CdnPath.root(`config/sections/${game}-${level}.json`))
+        /* Helps to debug "end of game" state
+            a game must have at least be 3 items so that there are options
         .map(json => ({
             ...json,
             items: json.items.slice(0,3)
         }))
+        */
 }
 
 let _service;
