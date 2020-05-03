@@ -33,5 +33,5 @@
 }
 
 .main-header > .text.zulu {
-    left: calc(300px * var(--scale));
+    left: calc(352px * var(--scale));
 }

@@ -14,22 +14,35 @@
 
 .home > .banner-text {
     position: absolute;
-    width: calc(591px * var(--scale));
-    left: calc(323px * var(--scale));
-    top: calc(172px * var(--scale));
-    letter-spacing: calc(0.02em * var(--scale));
     font-weight: normal;
-    line-height: calc(84px * var(--scale));
     text-align: center;
     color: #ffff01;
     text-shadow: 7px 4px 15px rgba(0, 0, 0, 0.16);
 }
+.home > .banner-text.english {
+    width: calc(591px * var(--scale));
+    left: calc(323px * var(--scale));
+    top: calc(172px * var(--scale));
+    letter-spacing: calc(0.02em * var(--scale));
+    line-height: calc(84px * var(--scale));
+}
+.home > .banner-text.zulu {
+    width: calc(591px * var(--scale));
+    left: calc(336px * var(--scale));
+    top: calc(172px * var(--scale));
+    letter-spacing: calc(0.02em * var(--scale));
+    line-height: calc(84px * var(--scale));
+}
 
-.home > .banner-text > .small {
+.home > .banner-text > .size81 {
     font-size: calc(81px * var(--scale));
 }
 
-.home > .banner-text > .large {
+.home > .banner-text > .size89 {
+    font-size: calc(89px * var(--scale));
+}
+
+.home > .banner-text > .size92 {
     font-size: calc(92px * var(--scale));
 }
 

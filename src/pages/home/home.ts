@@ -3,6 +3,7 @@ import {CdnPath} from "@utils/path";
 import {header} from "@pages/common/header";
 import {footer} from "@pages/common/footer";
 import {language_selector} from "@components/language-selector/language-selector";
+import {set_language, get_language} from "@components/language-selector/language-selector-state";
 import {green_button} from "@components/green-button/green-button";
 import "./home.css";
 import {router_service} from "@components/router/router-state";
@@ -17,10 +18,8 @@ export const home = () => {
         ${header()}
         <div class="home">
             <img class="home-tj" src=${CdnPath.root("tj-graduate.png")} />
-            <div class="banner-text">
-                <div class="small">TJ's</div>
-                <div class="large">WHAT'S THIS?</div>
-                <div class="small">Game</div>
+            <div class="banner-text ${get_language()}">
+                ${get_text_lines()}
             </div>
                 <div class="grade-buttons">
                     <div>
@@ -34,3 +33,14 @@ export const home = () => {
         ${footer({right: language_selector()})}
     `
 }
+
+const get_text_lines = () => get_language() == "english"
+    ? html`
+        <div class="size81">TJ's</div>
+        <div class="size92">WHAT'S THIS?</div>
+        <div class="size81">Game</div>
+        `
+    : html`
+        <div class="size81">TJ's</div>
+        <div class="size89">Yini Lo Mdlalo</div>
+        ` 
