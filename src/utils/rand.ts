@@ -13,6 +13,19 @@ export const random_suffix = (pad_size: number) => (max:number) =>
 
 export const random_suffix_2 = random_suffix(2);
 
+export const random_suffix_exclude = (exclude_list:Array<number>) => (pad_size: number) => (max:number) => {
+    const all_numbers = new Array(max+1).fill(null).map((_, idx) => idx+1);
+
+    const excluded_numbers = all_numbers.filter(idx => exclude_list.indexOf(idx) === -1);
+
+    const str_numbers = excluded_numbers.map(pad_zero(pad_size));
+    
+    shuffle_array_mut(str_numbers);
+
+    return str_numbers.pop();
+}
+
+export const random_suffix_exclude_2 = (exclude_list:Array<number>) => random_suffix_exclude(exclude_list) (2);
 
 /**
  * Shuffles array in place. ES6 version

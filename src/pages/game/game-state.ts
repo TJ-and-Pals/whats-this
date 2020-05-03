@@ -6,7 +6,7 @@ import {CdnPath} from "@utils/path";
 import {MAX_FEEDBACK} from "@config/config";
 import {GameJson, Game, GameItem} from "./game-types"
 import {router_service} from "@components/router/router-state";
-import {random_index, random_suffix_2, shuffle_array_mut} from "@utils/rand";
+import {random_index, random_suffix_2, random_suffix_exclude_2, shuffle_array_mut} from "@utils/rand";
 import {play_global_oneshot, play_oneshot_future} from "@utils/audio";
 import {set_language, get_language} from "@components/language-selector/language-selector-state";
 import {get_random_selector} from "@components/random-selector/random-selector-state";
@@ -185,7 +185,10 @@ function get_custom_intro(item:GameItem) {
 }
 function get_random_intro(firstPlay) {
     const lang = get_language();
-    const suffix = random_suffix_2 (MAX_FEEDBACK.intro[lang]);
+    const suffix = firstPlay 
+        ? random_suffix_exclude_2 ([5, 8, 9]) (MAX_FEEDBACK.intro[lang])
+        : random_suffix_2 (MAX_FEEDBACK.intro[lang]);
+
     return CdnPath.root(`media/audio/${lang}/common/question-variations-${suffix}.mp3`);
 }
 
