@@ -58,11 +58,12 @@
 /*TODO - FIX THIS... doesn't work!
 */
 .menu .label {
-    --text-width: calc(258px * var(--scale));
+    font-size: calc(36px * var(--scale));
+    --text-width: calc(259px * var(--scale));
     position: relative;
-    left: calc(var(--cell-width) - var(--text-width));
+    left: calc((var(--cell-width) - var(--text-width)) / 2);
     width: var(--text-width); 
     text-align: center;
-    white-space: nowrap;
+    white-space: wrap;
 }
 
