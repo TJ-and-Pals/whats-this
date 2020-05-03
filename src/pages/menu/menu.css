@@ -37,6 +37,7 @@
     border-radius: 11px;
     border: 5px solid #00bc48;
     cursor: pointer;
+    white-space: nowrap;   
 }
 
 .menu .cell > img {
@@ -52,5 +53,14 @@
     position: fixed;
     top: calc(var(--stage-y) + (663px * var(--scale)));
     width: var(--full-width); 
+}
+
+.menu .label {
+    --text-width: calc(258px * var(--scale));
+    position: relative;
+    left: calc(var(--cell-width) - var(--text-width));
+    width: var(--text-width); 
+    text-align: center;
+    white-space: nowrap;
 }
 

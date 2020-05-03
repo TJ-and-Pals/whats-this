@@ -93,7 +93,9 @@ const make_item = (item:Item) => {
             <div @click=${onSelect} class="cell" @mouseover=${onHover} @mouseout=${onHoverOut}>
                 <img src=${CdnPath.root(`media/menu/${item.name}.png`)} />
             </div>
-            ${label}
+            <div class="label">
+                ${label}
+            </div>
         </div>
     `;
 }
