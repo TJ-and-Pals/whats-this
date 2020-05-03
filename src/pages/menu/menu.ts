@@ -2,7 +2,7 @@ import {html} from "lit-html";
 import {CdnPath} from "@utils/path";
 import {router_service} from "@components/router/router-state";
 import {header} from "@pages/common/header";
-import {footer} from "@pages/common/footer";
+import {footer, footer_left, footer_arrow_left} from "@pages/common/footer";
 import {language_selector} from "@components/language-selector/language-selector";
 import {set_language, get_language} from "@components/language-selector/language-selector-state";
 import {green_button} from "@components/green-button/green-button";
@@ -32,10 +32,15 @@ export const menu = () => {
             error
         }) (state)
         }
-        ${footer({right: html`
-            ${language_selector()}
-            ${random_selector()}
-            `
+        ${footer({
+            right: html`
+                ${language_selector()}
+                ${random_selector()}
+                `,
+            left: footer_left({
+                home: true,
+                home_is_first: true
+            })
         })}
     `
 }

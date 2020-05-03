@@ -40,6 +40,9 @@
     cursor: pointer;
 }
 
+.main-footer .home-icon.first {
+    margin-left: 0; 
+}
 
 .main-footer .arrow-icon.left {
 }

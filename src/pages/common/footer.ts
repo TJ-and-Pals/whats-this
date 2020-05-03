@@ -2,6 +2,7 @@ import {html, TemplateResult} from "lit-html";
 import "./footer.css"
 import { CdnPath } from "@utils/path";
 import {router_service} from "@components/router/router-state";
+import { classMap } from "lit-html/directives/class-map";
 
 interface Props {
     left?: TemplateResult;
@@ -30,16 +31,17 @@ export const footer = (props?:Props) => {
 interface LeftProps {
     left_of_home?: any
     home?: boolean; 
+    home_is_first?: boolean; 
 }
 
-export const footer_left = ({left_of_home, home}:LeftProps) => {
+export const footer_left = ({left_of_home, home, home_is_first}:LeftProps) => {
     const on_home = () => router_service.send("HOME");
 
     return html`
         <div class="left">
             ${left_of_home}
             ${home && html`
-                <img class="home-icon" @click=${on_home} src=${CdnPath.common("bottom-bar/home.svg")} />
+                <img class=${classMap({"home-icon": true, first: home_is_first})} @click=${on_home} src=${CdnPath.common("bottom-bar/home.svg")} />
             `}
         </div>
     `
