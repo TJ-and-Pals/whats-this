@@ -151,7 +151,7 @@ const machine = Machine({
                 "": [
                     {
                         target: "init", 
-                        cond: (ctx) => ctx.current_index < (ctx.json as GameJson).items.length-1
+                        cond: (ctx) => ctx.current_index < (ctx.json as GameJson).items.length
                     },
                     {
                         target: "end"
