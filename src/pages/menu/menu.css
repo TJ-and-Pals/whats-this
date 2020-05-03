@@ -55,6 +55,8 @@
     width: var(--full-width); 
 }
 
+/*TODO - FIX THIS... doesn't work!
+*/
 .menu .label {
     --text-width: calc(258px * var(--scale));
     position: relative;
