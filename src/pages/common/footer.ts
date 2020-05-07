@@ -1,4 +1,5 @@
-import {html, TemplateResult} from "lit-html";
+import {html, nothing, TemplateResult} from "lit-html";
+import {random_selector} from "@components/random-selector/random-selector";
 import "./footer.css"
 import { CdnPath } from "@utils/path";
 import {router_service} from "@components/router/router-state";
@@ -31,10 +32,11 @@ export const footer = (props?:Props) => {
 interface LeftProps {
     left_of_home?: any
     home?: boolean; 
-    home_is_first?: boolean; 
+    home_is_first?: boolean;
+    has_random?: boolean;
 }
 
-export const footer_left = ({left_of_home, home, home_is_first}:LeftProps) => {
+export const footer_left = ({left_of_home, home, home_is_first, has_random}:LeftProps) => {
     const on_home = () => router_service.send("HOME");
 
     return html`
@@ -43,6 +45,7 @@ export const footer_left = ({left_of_home, home, home_is_first}:LeftProps) => {
             ${home && html`
                 <img class=${classMap({"home-icon": true, first: home_is_first})} @click=${on_home} src=${CdnPath.common("bottom-bar/home.svg")} />
             `}
+            ${has_random ? html`<div class="footer-random">${random_selector()}</div>` : nothing}
         </div>
     `
 }

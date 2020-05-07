@@ -51,6 +51,11 @@
     right: calc(20px * var(--scale));
 }
 
+.main-footer .footer-random {
+    position: absolute;
+    left: calc(213px * var(--scale));
+}
+
 .arrow-icon.disabled {
     opacity: .2
 }

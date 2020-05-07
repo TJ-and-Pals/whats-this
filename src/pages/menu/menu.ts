@@ -1,4 +1,4 @@
-import {html} from "lit-html";
+import {html, nothing} from "lit-html";
 import {CdnPath} from "@utils/path";
 import {router_service} from "@components/router/router-state";
 import {header} from "@pages/common/header";
@@ -24,6 +24,9 @@ export const menu = () => {
 
     send("RELOAD_LEVEL");
 
+    const chooseText = get_language() === "english" ? "Choose:": "Khetha:"; 
+
+    const lang = get_language();
     return html`
         ${header()}
         ${ifState({
@@ -33,14 +36,15 @@ export const menu = () => {
         }) (state)
         }
         ${footer({
-            right: html`
-                ${language_selector()}
-                ${random_selector()}
-                `,
             left: footer_left({
                 home: true,
-                home_is_first: true
-            })
+                home_is_first: true,
+                has_random: lang === "zulu"
+            }),
+            right: html`
+                ${language_selector()}
+                ${lang !== "zulu" ? random_selector() : nothing}
+                `
         })}
     `
 }
