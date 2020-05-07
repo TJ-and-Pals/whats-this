@@ -30,6 +30,8 @@
     position: absolute;
     left: calc(400px * var(--scale));
     top: calc(21px * var(--scale));
+    cursor: pointer;
+    z-index: 2;
 }
 
 .main-header > .text.zulu {

@@ -5,7 +5,6 @@ import {header} from "@pages/common/header";
 import {footer, footer_left, footer_arrow_left} from "@pages/common/footer";
 import {language_selector} from "@components/language-selector/language-selector";
 import {set_language, get_language} from "@components/language-selector/language-selector-state";
-import {green_button} from "@components/green-button/green-button";
 import {play_global_oneshot, play_oneshot_future, stop_global_oneshot} from "@utils/audio";
 import {ifState} from "@utils/xstate";
 import {get_service} from "./menu-state";

@@ -4,7 +4,6 @@ import {router_service} from "@components/router/router-state";
 import {header} from "@pages/common/header";
 import {footer, footer_left, footer_arrow_right, footer_arrow_left} from "@pages/common/footer";
 import {language_selector} from "@components/language-selector/language-selector";
-import {green_button} from "@components/green-button/green-button";
 import {ifState} from "@utils/xstate";
 import {get_service} from "./game-state";
 import {pagination} from "@components/pagination/pagination";

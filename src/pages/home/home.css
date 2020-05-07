@@ -18,6 +18,7 @@
     text-align: center;
     color: #ffff01;
     text-shadow: 7px 4px 15px rgba(0, 0, 0, 0.16);
+    cursor: pointer;
 }
 .home > .banner-text.english {
     width: calc(591px * var(--scale));
