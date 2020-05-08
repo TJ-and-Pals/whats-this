@@ -5,7 +5,7 @@ import {footer} from "@pages/common/footer";
 import {language_selector} from "@components/language-selector/language-selector";
 import {set_language, get_language} from "@components/language-selector/language-selector-state";
 import {play_global_oneshot, play_oneshot_future, stop_global_oneshot} from "@utils/audio";
-import {green_button} from "@components/green-button/green-button";
+import {button} from "@components/green-button/green-button";
 import "./home.css";
 import {router_service} from "@components/router/router-state";
 
@@ -16,9 +16,10 @@ const onSelect = (level: "rr" | "r") => {
 
 export const home = () => {
 
+    const lang = get_language();
+
     const onHover = (name:string) => () => {
 
-        const lang = get_language();
         const path = CdnPath.root(`media/audio/${lang}/${name}.mp3`);
         play_global_oneshot(path);
     }
@@ -27,6 +28,11 @@ export const home = () => {
         stop_global_oneshot();
     }
 
+    const grade_rr_label = lang === "english" ? "Grade RR" : "ibanga RR";
+    const grade_r_label = lang === "english" ? "Grade R" : "ibanga R";
+
+    const button_classes = `green-button ${lang}`;
+    
     return html`
         ${header()}
         <div class="home">
@@ -36,14 +42,14 @@ export const home = () => {
             </div>
                 <div class="grade-buttons">
                     <div>
-                    ${green_button ("Grade RR") ({
+                    ${button (button_classes) (grade_rr_label) ({
                         onSelect: () => onSelect("rr"),
                         onHover: onHover("grade_RR"),
                         onHoverOut,
                     })}
                     </div>
                     <div>
-                    ${green_button ("Grade R") ({
+                    ${button (button_classes) (grade_r_label) ({
                         onSelect: () => onSelect("r"),
                         onHover: onHover("grade_R"),
                         onHoverOut

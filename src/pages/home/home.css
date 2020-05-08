@@ -52,12 +52,12 @@
     grid-template-columns: 1fr 1fr;
     grid-gap: calc(25px * var(--scale));
     font-weight: normal;
-    font-size: calc(49px * var(--scale));
     color: #fff;
     position: absolute;
     left: calc(400px * var(--scale));
     top: calc(453px * var(--scale));
 }
+
 .home .grade-buttons > div {
     width: calc(245px * var(--scale));
     height: calc(53px * var(--scale));

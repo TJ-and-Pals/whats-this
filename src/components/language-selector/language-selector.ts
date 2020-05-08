@@ -8,10 +8,15 @@ const onSelect = (language: "english" | "zulu") => () => {
 }
 export const language_selector = () => {
     const lang = get_language();
+
+    const english_label = lang === "english" ? "English" : "isiNgisi";
+    const zulu_label = lang === "english" ? "Zulu" : "isiZulu";
+
     return html`
         <div class="language-selector">
-            ${circle_selector (onSelect("english")) ("English") (lang === "english")}
-            ${circle_selector (onSelect("zulu")) ("Zulu") (lang === "zulu")}
+            ${circle_selector (onSelect("english")) (english_label) (lang === "english")}
+            ${circle_selector (onSelect("zulu")) (zulu_label) (lang === "zulu")}
         </div>
     `;
 }
+

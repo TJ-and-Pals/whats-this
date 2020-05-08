@@ -7,6 +7,11 @@
     color: white;
     text-align: center;
     cursor: pointer;
+    font-size: calc(49px * var(--scale));
+}
+
+.green-button.zulu {
+    font-size: calc(44px * var(--scale));
 }
 
 .green-button:hover {
