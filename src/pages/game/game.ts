@@ -12,6 +12,7 @@ import {Game, GameItem} from "./game-types";
 import {get_language} from "@components/language-selector/language-selector-state";
 import "./game.css";
 import { classMap } from "lit-html/directives/class-map";
+import { styleMap } from "lit-html/directives/style-map";
 
 export const game = () => {
     const {state, send} = get_service();
@@ -85,7 +86,20 @@ const play = (game:Game, isShowingCorrect: boolean) => {
         }
     }
 
-    const getText = (item:GameItem) => get_language() === "english" ? item.label_en : item.label_zu;
+    const lang = get_language();
+
+    const getText = (item:GameItem) => lang === "english" ? item.label_en : item.label_zu;
+    const getButtonStyle = (item:GameItem) => {
+        const size = lang === "english" ? item.size_en : item.size_zu;
+        return size ? styleMap({fontSize: `calc(${size}px * var(--scale))`}) : styleMap({});
+    }
+    const getButtonClass = (isCorrect:boolean) => {
+        return classMap({
+            ["green-button"]: !isShowingCorrect, 
+            ["green-button-nohover"]: isShowingCorrect, 
+            correct: isCorrect && isShowingCorrect
+        }); 
+    }
 
     return html`
         <div class="game">
@@ -99,7 +113,11 @@ const play = (game:Game, isShowingCorrect: boolean) => {
                         const isCorrect = index === game.correct_index;
                         return html`
                             <div class="choice">
-                                <div class=${classMap({["green-button"]: !isShowingCorrect, ["green-button-nohover"]: isShowingCorrect, correct: isCorrect && isShowingCorrect})} @click=${() => on_click(index)}>
+                                <div 
+                                    class=${getButtonClass (isCorrect)}
+                                    style=${getButtonStyle (choice)}
+                                    @click=${() => on_click(index)}
+                                    >
                                     ${getText(choice)}
                                 </div>
                             </div>

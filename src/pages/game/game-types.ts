@@ -9,6 +9,8 @@ export interface GameItem {
     disabled?: boolean;
     custom_question?: boolean;
     custom_answer?: boolean;
+    size_en?: number;
+    size_zu?: number;
 }
 
 export interface Game {
