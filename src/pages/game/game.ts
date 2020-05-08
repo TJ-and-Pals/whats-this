@@ -97,6 +97,7 @@ const play = (game:Game, isShowingCorrect: boolean) => {
         return classMap({
             ["green-button"]: !isShowingCorrect, 
             ["green-button-nohover"]: isShowingCorrect, 
+            ["green-button-fixed-size-game"]: true, 
             correct: isCorrect && isShowingCorrect
         }); 
     }
@@ -118,7 +119,7 @@ const play = (game:Game, isShowingCorrect: boolean) => {
                                     style=${getButtonStyle (choice)}
                                     @click=${() => on_click(index)}
                                     >
-                                    ${getText(choice)}
+                                    <div>${getText(choice)}</div>
                                 </div>
                             </div>
                         `

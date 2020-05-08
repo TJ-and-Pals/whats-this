@@ -47,3 +47,15 @@
 .game .correct {
     border-color: #FFFF01
 }
+
+.green-button-fixed-size-game {
+    height: calc(76px * var(--scale));
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+}
+.green-button-fixed-size-game > * {
+    text-align: center;
+    width: 100%;
+}
