@@ -127,10 +127,13 @@ const machine = Machine({
                         return play_oneshot_future(
                             CdnPath.root(`media/audio/${lang}/${game_name}/${item.name}_answer.mp3`)
                         )
+                        .chain(() => F.after(2000, {}))
                     } else {
                         return play_oneshot_future(
                             CdnPath.root(`media/audio/${lang}/${game_name}/${item.name}.mp3`)
-                        ).chain(() => play_oneshot_future(get_random_good_feedback()))
+                        )
+                        .chain(() => play_oneshot_future(get_random_good_feedback()))
+                        .chain(() => F.after(2000, {}))
                     }
                 }) 
             },
