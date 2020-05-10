@@ -34,7 +34,7 @@ export const home = () => {
     const button_classes = `green-button ${lang}`;
     
     return html`
-        ${header()}
+        ${header("home-header")}
         <div class="home">
             <img class="home-tj" src=${CdnPath.root("tj-graduate.png")} />
             <div class="banner-text ${get_language()}" @mouseover=${onHover("TJs_whats_this_game")} @mouseout=${onHoverOut}>

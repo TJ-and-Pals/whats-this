@@ -4,7 +4,7 @@ import { CdnPath } from "@utils/path";
 import {set_language, get_language} from "@components/language-selector/language-selector-state";
 import {play_global_oneshot, play_oneshot_future, stop_global_oneshot} from "@utils/audio";
 import {router_service} from "@components/router/router-state";
-export const header = () => {
+export const header = (classOverride?: string) => {
     const lang = get_language();
 
     const header = lang === "zulu" ? "Funda Amagama!" : "Learn Words!";
@@ -22,8 +22,14 @@ export const header = () => {
         stop_global_oneshot();
     }
 
+    let classes = "main-header";
+    
+    if(classOverride && classOverride !== "") {
+        classes += " " + classOverride;
+    }
+
     return html`
-        <header class="main-header">
+        <header class=${classes}>
             <img class="logo" src=${CdnPath.common("tj-logo-header.png")} @click=${on_home} />
             <div class="text ${lang}" @mouseover=${onHover("learn_words")} @mouseout=${onHoverOut}>${header}</div>
             <img class="tj-flag" src=${CdnPath.common("tj-flag.png")} @click=${on_home} />

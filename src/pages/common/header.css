@@ -23,7 +23,6 @@
     font-weight: normal;
     font-size: calc(66px * var(--scale));
     letter-spacing: 0.02em;
-    text-align: left;
     color: #ffff01;
     text-shadow: 7px 4px 15px rgba(0, 0, 0, 0.16);
 
@@ -35,8 +34,23 @@
     z-index: 1;
 }
 
-.main-header > .text.zulu {
-    left: calc(352px * var(--scale));
+.home-header > .text {
+    font-weight: normal;
+    font-size: calc(66px * var(--scale));
+    letter-spacing: 0.02em;
+    color: #ffff01;
+    text-shadow: 7px 4px 15px rgba(0, 0, 0, 0.16);
+
+    position: absolute;
+    top: calc(21px * var(--scale));
+    left: calc(400px * var(--scale));
+    text-align: left;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.home-header > .text.zulu {
+    left: calc(320px * var(--scale));
 }
 
 .main-header > .tj-flag {
