@@ -16,7 +16,7 @@
     width: calc(197.6px * var(--scale));
     height: calc(87.28px * var(--scale));
     cursor: pointer;
-    z-index: 1;
+    z-index: 2;
 }
 
 .main-header > .text {
@@ -28,12 +28,22 @@
     text-shadow: 7px 4px 15px rgba(0, 0, 0, 0.16);
 
     position: absolute;
-    left: calc(400px * var(--scale));
     top: calc(21px * var(--scale));
+    width: 100%;
+    text-align: center;
     cursor: pointer;
-    z-index: 2;
+    z-index: 1;
 }
 
 .main-header > .text.zulu {
     left: calc(352px * var(--scale));
+}
+
+.main-header > .tj-flag {
+    position: absolute;
+    right: calc(36px * var(--scale));
+    top: calc(-10px * var(--scale));
+    width: calc(135px * var(--scale));
+    height: calc(147px * var(--scale));
+
 }

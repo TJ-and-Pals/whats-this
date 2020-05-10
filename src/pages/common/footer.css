@@ -40,6 +40,11 @@
     cursor: pointer;
 }
 
+.main-footer .grid-icon {
+    margin-left: calc(10px * var(--scale));
+    height: calc(37px * var(--scale));
+    cursor: pointer;
+}
 .main-footer .home-icon.first {
     margin-left: 0; 
 }

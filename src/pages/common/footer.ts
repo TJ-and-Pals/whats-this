@@ -34,16 +34,21 @@ interface LeftProps {
     home?: boolean; 
     home_is_first?: boolean;
     has_random?: boolean;
+    menu?: boolean;
 }
 
-export const footer_left = ({left_of_home, home, home_is_first, has_random}:LeftProps) => {
+export const footer_left = ({left_of_home, home, home_is_first, has_random, menu}:LeftProps) => {
     const on_home = () => router_service.send("HOME");
+    const on_menu = () => router_service.send("MENU");
 
     return html`
         <div class="left">
             ${left_of_home}
             ${home && html`
                 <img class=${classMap({"home-icon": true, first: home_is_first})} @click=${on_home} src=${CdnPath.common("bottom-bar/home.svg")} />
+            `}
+            ${menu && html`
+                <img class=${classMap({"grid-icon": true})} @click=${on_menu} src=${CdnPath.common("bottom-bar/grid.svg")} />
             `}
             ${has_random ? html`<div class="footer-random">${random_selector()}</div>` : nothing}
         </div>

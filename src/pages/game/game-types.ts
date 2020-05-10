@@ -11,6 +11,8 @@ export interface GameItem {
     custom_answer?: boolean;
     size_en?: number;
     size_zu?: number;
+    bigButton_zu?: boolean;
+    bigButton_en?: boolean;
 }
 
 export interface Game {

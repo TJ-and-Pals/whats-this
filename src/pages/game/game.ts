@@ -46,14 +46,15 @@ export const game = () => {
         ${header()}
         ${ifState(stateMap) (state) }
         ${footer({
+            left: footer_left({
+                left_of_home: footer_arrow_left(on_left_arrow),
+                home: true,
+                menu: true
+            }),
             right: html`
                 ${language_selector()}
                 ${footer_arrow_right(on_right_arrow)}
             `,
-            left: footer_left({
-                left_of_home: footer_arrow_left(on_left_arrow),
-                home: true
-            })
         })}
     `
 }
@@ -89,15 +90,15 @@ const play = (game:Game, isShowingCorrect: boolean) => {
     const lang = get_language();
 
     const getText = (item:GameItem) => lang === "english" ? item.label_en : item.label_zu;
-    const getButtonStyle = (item:GameItem) => {
+    const getTextStyle = (item:GameItem) => {
         const size = lang === "english" ? item.size_en : item.size_zu;
         return size ? styleMap({fontSize: `calc(${size}px * var(--scale))`}) : styleMap({});
     }
-    const getButtonClass = (isCorrect:boolean) => {
+    const getButtonClass = ({item, isCorrect}:{item:GameItem, isCorrect:boolean}) => {
         return classMap({
             ["green-button"]: !isShowingCorrect, 
             ["green-button-nohover"]: isShowingCorrect, 
-            ["green-button-fixed-size-game"]: true, 
+            ["green-button-game"]: true, 
             correct: isCorrect && isShowingCorrect
         }); 
     }
@@ -113,13 +114,13 @@ const play = (game:Game, isShowingCorrect: boolean) => {
                     ${game.choices.map((choice, index) => {
                         const isCorrect = index === game.correct_index;
                         return html`
-                            <div class="choice">
+                            <div>
                                 <div 
-                                    class=${getButtonClass (isCorrect)}
-                                    style=${getButtonStyle (choice)}
+                                    class=${getButtonClass ({item: choice, isCorrect})}
                                     @click=${() => on_click(index)}
                                     >
-                                    <div>${getText(choice)}</div>
+                                    <div style=${getTextStyle(choice)}>${getText(choice)}</div>
+
                                 </div>
                             </div>
                         `

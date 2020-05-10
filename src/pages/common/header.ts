@@ -26,6 +26,7 @@ export const header = () => {
         <header class="main-header">
             <img class="logo" src=${CdnPath.common("tj-logo-header.png")} @click=${on_home} />
             <div class="text ${lang}" @mouseover=${onHover("learn_words")} @mouseout=${onHoverOut}>${header}</div>
+            <img class="tj-flag" src=${CdnPath.common("tj-flag.png")} @click=${on_home} />
         </header>
     `;
 }
