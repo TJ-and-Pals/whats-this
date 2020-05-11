@@ -30,6 +30,7 @@ export const game = () => {
    
     const stateMap = new Map();
 
+
     stateMap.set("waiting", () => null);
     stateMap.set("loading", loading);
     stateMap.set("error", error);
@@ -37,7 +38,7 @@ export const game = () => {
     stateMap.set("end", () => {
         router_service.send("MENU");
     });
-    stateMap.set(["play", "waiting_correct"], () => play(context.game, context.isShowingCorrect));
+    stateMap.set(["play", "play_from_wrong", "waiting_correct", "waiting_wrong"], () => play(context.game, context.isShowingCorrect, context.wrongIndex));
 
     if(state.matches("waiting")) {
         send("LOAD");
@@ -72,10 +73,13 @@ const error = () => html`
 `;
 
 
-const play = (game:Game, isShowingCorrect: boolean) => {
+const play = (game:Game, isShowingCorrect: boolean, wrongIndex:number) => {
     const game_name = router_service.state.context.game;
     const correct = game.choices[game.correct_index]; 
     const wrong = game.choices.filter((_, idx) => idx !== game.correct_index);
+
+
+    const isShowingWrong = wrongIndex != -1;
 
     const {send} = get_service();
 
@@ -83,7 +87,7 @@ const play = (game:Game, isShowingCorrect: boolean) => {
         if(index === game.correct_index) {
             send("CORRECT");
         } else {
-            send("WRONG");
+            send({type: "WRONG", index});
         }
     }
 
@@ -94,12 +98,12 @@ const play = (game:Game, isShowingCorrect: boolean) => {
         const size = lang === "english" ? item.size_en : item.size_zu;
         return size ? styleMap({fontSize: `calc(${size}px * var(--scale))`}) : styleMap({});
     }
-    const getButtonClass = ({item, isCorrect}:{item:GameItem, isCorrect:boolean}) => {
+    const getButtonClass = ({item, isCorrect, isWrong}:{item:GameItem, isCorrect:boolean, isWrong:boolean}) => {
         return classMap({
-            ["green-button"]: !isShowingCorrect, 
-            ["green-button-nohover"]: isShowingCorrect, 
+            ["green-button"]: true, 
             ["green-button-game"]: true, 
-            correct: isCorrect && isShowingCorrect
+            correct: isCorrect && isShowingCorrect,
+            wrong: isWrong && isShowingWrong
         }); 
     }
 
@@ -113,10 +117,12 @@ const play = (game:Game, isShowingCorrect: boolean) => {
                 <div class="choices">
                     ${game.choices.map((choice, index) => {
                         const isCorrect = index === game.correct_index;
+                        const isWrong = index === wrongIndex;
+
                         return html`
                             <div>
                                 <div 
-                                    class=${getButtonClass ({item: choice, isCorrect})}
+                                    class=${getButtonClass ({item: choice, isCorrect, isWrong})}
                                     @click=${() => on_click(index)}
                                     >
                                     <div style=${getTextStyle(choice)}>${getText(choice)}</div>

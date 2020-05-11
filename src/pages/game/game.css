@@ -56,6 +56,10 @@
     text-align: center;
 }
 
+.green-button-game:hover {
+    border-color: rgba(0,0,0,0);
+}
+
 .game > .answerText {
     position: absolute;
     color: #3AB54B;
@@ -63,6 +67,10 @@
     top: calc(512px * var(--scale));
     text-align: center;
     width: 100%;
+}
+
+.game .wrong {
+    border-color: #e84141;
 }
 
 .game .correct {

@@ -19,6 +19,7 @@ const machine = Machine({
         current_index: 0,
         game: {},
         isShowingCorrect: false,
+        wrongIndex: -1,
         firstPlayAudioQuestion: true,
     },
     states: {
@@ -103,10 +104,48 @@ const machine = Machine({
                 PREV: "prev",
                 CORRECT: "waiting_correct",
                 WRONG: {
-                    actions: (ctx) => {
-                        play_global_oneshot(get_random_bad_feedback());
-                    }
+                    target: "waiting_wrong", 
+                    actions: assign({
+                        wrongIndex: (ctx, evt) => evt.index
+                    })
                 }
+            }
+        },
+        play_from_wrong: {
+            on: {
+                NEXT: "next",
+                PREV: "prev",
+                CORRECT: "waiting_correct",
+                WRONG: {
+                    target: "waiting_wrong", 
+                    actions: assign({
+                        wrongIndex: (ctx, evt) => evt.index
+                    })
+                }
+            }
+        },
+        waiting_wrong: {
+            onExit: assign({
+                wrongIndex: () => -1
+            }),
+            invoke: {
+                src: invoke_future((ctx) => {
+                    return play_oneshot_future(get_random_bad_feedback())
+                }) 
+            },
+            on: {
+                NEXT: "next",
+                PREV: "prev",
+                CORRECT: "waiting_correct",
+                WRONG: {
+                    target: "waiting_wrong", 
+                    actions: assign({
+                        wrongIndex: (ctx, evt) => evt.index
+                    })
+                },
+                RESOLVE: {
+                    target: "play_from_wrong",
+                },
             }
         },
 
