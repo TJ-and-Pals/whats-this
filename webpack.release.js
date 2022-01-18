@@ -20,7 +20,7 @@ module.exports = {
     output: {
         path: path.join(process.cwd(), 'dist'),
         filename: '[name].js',
-		publicPath: '/',
+		publicPath: '/app/whats-this/',
     },
     plugins: [
         new ForkTsCheckerWebpackPlugin({

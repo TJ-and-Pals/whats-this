@@ -2,23 +2,26 @@ import { interpret, Machine, assign } from "xstate";
 import {kill_service as kill_game_service} from "@pages/game/game-state";
 import {stop_global_oneshot} from "@utils/audio";
 
-export const pathname = window.location.pathname.replace("/", "");
-export const pages = pathname.indexOf("/") === -1 ? [pathname] : pathname.split("/");
-export const pathRoot = pages[0];
+// export const pathname = window.location.pathname.replace("/", "");
+// export const pages = pathname.indexOf("/") === -1 ? [pathname] : pathname.split("/");
+// export const pathRoot = pages[0];
 
-const initial = 
-    pathRoot === "menu" ? "menu"
-    : pathRoot === "game" ? "game"
-    : "home";
+// no longer doing deep linking.
+const initial = "home";
+    // pathRoot === "menu" ? "menu"
+    // : pathRoot === "game" ? "game"
+    // : "home";
 
 const routeMachine = Machine({
     id: "route",
     initial,
     context: {
-        game: pathRoot === "game" ? pages[1] : "",
-        level: pathRoot === "game" ? pages[2] 
-            : pathRoot === "menu" ? pages[1]
-            : "rr",
+        game: "",
+        level: "rr"
+        // game: pathRoot === "game" ? pages[1] : "",
+        // level: pathRoot === "game" ? pages[2] 
+        //     : pathRoot === "menu" ? pages[1]
+        //     : "rr",
     },
     states: {
         home: { 
@@ -69,10 +72,10 @@ export const router_service = interpret(routeMachine)
         }else if(state.matches("menu")) {
             pathName += `/${state.context.level}`;
         }
-        window.history.pushState(null, null, pathName); 
+        //window.history.pushState(null, null, pathName); 
     })
   .start();
 
 window.onpopstate = (evt) => {
-    router_service.send("BACK");
+    //router_service.send("BACK");
 }
